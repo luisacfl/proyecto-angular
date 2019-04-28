@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { MapaComponent } from './mapa/mapa.component';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
