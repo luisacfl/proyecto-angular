@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
-
+  title: string = 'Mapa de Personas Desaparecidas';
+  lat: number = 22.5208046;
+  lng: number = -120.9572822;
+  
   constructor() { }
 
   ngOnInit() {
