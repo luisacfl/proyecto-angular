@@ -8,12 +8,18 @@ import { HomeComponent } from './home/home.component';
 import { MapaComponent } from './mapa/mapa.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AgmCoreModule} from '@agm/core';
+import { DesaparecidosMainComponent } from './desaparecidos-main/desaparecidos-main.component';
+import { DesaparecidosListaComponent } from './desaparecidos-main/desaparecidos-lista/desaparecidos-lista.component';
+import { DesaparecidoComponent } from './desaparecidos-main/desaparecidos-lista/desaparecido/desaparecido.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    MapaComponent
+    MapaComponent,
+    DesaparecidosMainComponent,
+    DesaparecidosListaComponent,
+    DesaparecidoComponent
   ],
   imports: [
     BrowserModule,
