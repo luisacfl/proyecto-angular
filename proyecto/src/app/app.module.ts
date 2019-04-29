@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { MapaComponent } from './mapa/mapa.component';
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-
+import {AgmCoreModule} from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +18,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCweM3a88aM2P7_wBTrc61xHACOmR7gZYk'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
