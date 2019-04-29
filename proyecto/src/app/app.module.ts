@@ -20,7 +20,7 @@ import {AgmCoreModule} from '@agm/core';
     AppRoutingModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCweM3a88aM2P7_wBTrc61xHACOmR7gZYk'
+      //apiKey: INSERT API KEY HERE
     })
   ],
   providers: [],
