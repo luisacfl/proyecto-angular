@@ -11,6 +11,10 @@ import {AgmCoreModule} from '@agm/core';
 import { DesaparecidosMainComponent } from './desaparecidos-main/desaparecidos-main.component';
 import { DesaparecidosListaComponent } from './desaparecidos-main/desaparecidos-lista/desaparecidos-lista.component';
 import { DesaparecidoComponent } from './desaparecidos-main/desaparecidos-lista/desaparecido/desaparecido.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigComponent } from './config/config.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,15 +23,17 @@ import { DesaparecidoComponent } from './desaparecidos-main/desaparecidos-lista/
     MapaComponent,
     DesaparecidosMainComponent,
     DesaparecidosListaComponent,
-    DesaparecidoComponent
+    DesaparecidoComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      //apiKey: INSERT API KEY HERE
-    })
+      apiKey: "AIzaSyCweM3a88aM2P7_wBTrc61xHACOmR7gZYk"
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
