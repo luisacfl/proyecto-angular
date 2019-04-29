@@ -8,20 +8,26 @@ import { HomeComponent } from './home/home.component';
 import { MapaComponent } from './mapa/mapa.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AgmCoreModule} from '@agm/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigComponent } from './config/config.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    MapaComponent
+    MapaComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AgmCoreModule.forRoot({
-      //apiKey: INSERT API KEY HERE
-    })
+      apiKey: "AIzaSyCweM3a88aM2P7_wBTrc61xHACOmR7gZYk"
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
