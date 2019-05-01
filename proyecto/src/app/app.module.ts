@@ -8,11 +8,12 @@ import { HomeComponent } from './home/home.component';
 import { MapaComponent } from './mapa/mapa.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AgmCoreModule} from '@agm/core';
-import { DesaparecidosMainComponent } from './desaparecidos-main/desaparecidos-main.component';
-import { DesaparecidosListaComponent } from './desaparecidos-main/desaparecidos-lista/desaparecidos-lista.component';
-import { DesaparecidoComponent } from './desaparecidos-main/desaparecidos-lista/desaparecido/desaparecido.component';
+//import { DesaparecidosMainComponent } from './desaparecidos-main/desaparecidos-main.component';
+//import { DesaparecidosListaComponent } from './desaparecidos-main/desaparecidos-lista/desaparecidos-lista.component';
+//import { DesaparecidoComponent } from './desaparecidos-main/desaparecidos-lista/desaparecido/desaparecido.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigComponent } from './config/config.component';
+import { OrganizacionesComponent } from './organizaciones/organizaciones.component';
 
 
 @NgModule({
@@ -21,10 +22,11 @@ import { ConfigComponent } from './config/config.component';
     NavBarComponent,
     HomeComponent,
     MapaComponent,
-    DesaparecidosMainComponent,
-    DesaparecidosListaComponent,
-    DesaparecidoComponent,
-    ConfigComponent
+    //DesaparecidosMainComponent,
+    //DesaparecidosListaComponent,
+    //DesaparecidoComponent,
+    ConfigComponent,
+    OrganizacionesComponent
   ],
   imports: [
     BrowserModule,
