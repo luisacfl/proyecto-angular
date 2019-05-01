@@ -14,9 +14,6 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'mapa', component: MapaComponent},
-<<<<<<< HEAD
-  {path: 'mapa', component: MapaComponent}
-=======
   {path: 'listado', component: DesaparecidosMainComponent, children:[
     {path: '', component: DesaparecidosListaComponent},
     {path: 'new', component: DesaparecidosEditComponent},
@@ -27,7 +24,6 @@ const routes: Routes = [
   {path: 'grafs', component: GrafsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent}
->>>>>>> 002ac8cb8cf88e4b524dd93c8bd963fa0277b1d1
 ];
 
 @NgModule({

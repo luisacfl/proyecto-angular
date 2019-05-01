@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Desaparecidx } from 'src/app/desap/Desaparecidx';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DesapService } from 'src/app/desap/desap.service';
+import { Desaparecidx } from 'src/app/Desaparecidx';
+import { DesapService } from 'src/app/services/desap/desap.service';
 import { Location } from '@angular/common';
 
 @Component({

@@ -18,8 +18,8 @@ import { DesaparecidoDetalleComponent } from './desaparecidos-main/desaparecido-
 import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-edit/desaparecidos-edit.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
-import { GrafsComponent } from './grafs/grafs.component';
-
+import { OrganizacionComponent } from './organizaciones/organizacion/organizacion.component';
+//import { GrafsComponent } from './grafs/grafs.component';  
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { GrafsComponent } from './grafs/grafs.component';
     DesaparecidosEditComponent,
     LoginComponent,
     RegistroComponent,
-    GrafsComponent
+    OrganizacionComponent,
+    
   ],
   imports: [
     BrowserModule,

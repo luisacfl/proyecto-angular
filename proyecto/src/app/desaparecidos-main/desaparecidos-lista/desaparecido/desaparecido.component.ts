@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Desaparecidx } from 'src/app/desap/Desaparecidx';
+import { Desaparecidx } from 'src/app/Desaparecidx';
 
 @Component({
   selector: 'app-desaparecido',
