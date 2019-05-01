@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigComponent } from './config/config.component';
 import { DesaparecidoDetalleComponent } from './desaparecidos-main/desaparecido-detalle/desaparecido-detalle.component';
 import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-edit/desaparecidos-edit.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-e
     DesaparecidoComponent,
     ConfigComponent,
     DesaparecidoDetalleComponent,
-    DesaparecidosEditComponent
+    DesaparecidosEditComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

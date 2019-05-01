@@ -6,6 +6,8 @@ import { DesaparecidosMainComponent } from './desaparecidos-main/desaparecidos-m
 import { DesaparecidosListaComponent } from './desaparecidos-main/desaparecidos-lista/desaparecidos-lista.component';
 import { DesaparecidoDetalleComponent } from './desaparecidos-main/desaparecido-detalle/desaparecido-detalle.component';
 import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-edit/desaparecidos-edit.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
     {path: ':id', component: DesaparecidoDetalleComponent},
     {path: ':id/edit', component: DesaparecidosEditComponent}
     ]
-  }
+  },
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent}
 ];
 
 @NgModule({
