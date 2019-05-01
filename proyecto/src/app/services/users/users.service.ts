@@ -22,14 +22,15 @@ export class UsersService {
   constructor() { }
   addUser(user: Usuario): boolean {
     user.id = this.lastId++;
-    const u = this.users.find((us)=> us.usuario.toUpperCase() === user.usuario.toUpperCase());
-     
-    if (u) { //existe alumno
+    const u = this.users.find((us)=> us.usuario.toUpperCase() === user.usuario.toUpperCase() 
+                                    || us.correo.toLowerCase() === user.correo.toLowerCase());
+    if (u) { //existe usuario ó existe su correo
       this.lastId--;
       return false;
     }
     this.users.push(Object.assign({}, user)); //creamos una copia
     this.notificarCambios();
+    console.log(user);
     return true;
   }
   getNextId(): number {

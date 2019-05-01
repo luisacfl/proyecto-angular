@@ -2,7 +2,7 @@
   <article class="card-body mx-auto" style="max-width: 400px;">
     <h4 class="card-title mt-3 text-center">Regístrate</h4>
     <p class="text-center">Ingresa tus datos o los de tu organización</p>
-    <form>
+    <form #f="ngForm" (ngSubmit)="submit(f)">
       <div class="form-group input-group">
         <!---tipo de cuenta-->
         <div class="input-group-prepend">
@@ -15,14 +15,19 @@
           <option [value]=3>Otro</option>
         </select>
       </div> <!-- fin de tipo de cuenta// -->
-      
+      <div class="form-group input-group"> <!-- Usuario// -->
+        <div class="input-group-prepend">
+          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+        </div>
+        <input [(ngModel)]="user.usuario" name="usuario" class="form-control" (change) = "checkName()" placeholder="Usuario" type="text" [ngModelOptions]="{standalone: false}" required>
+      </div> <!-- Nombre// -->
       <div class="form-group input-group"> <!-- Nombre// -->
         <div class="input-group-prepend">
           <span class="input-group-text"> <i class="fa fa-user"></i> </span>
         </div>
         <input [(ngModel)]="user.nombre" name="nombre" class="form-control" (change) = "checkName()" placeholder="Nombre" type="text" [ngModelOptions]="{standalone: false}" required>
-        <p class="alert-danger" *ngIf="this.errorName===true">El nombre no puede tener menos de 2 caracteres.</p>
       </div> <!-- Nombre// -->
+      <p class="alert-danger" *ngIf="this.errorName===true">El nombre no puede tener menos de 2 caracteres.</p>
 
       <div *ngIf= "user.tipo!=1" class="form-group input-group"><!-- <Apellido>// -->
         <div class="input-group-prepend">
@@ -37,9 +42,8 @@
         </div>
         <input [(ngModel)]="user.correo" name="correo" (change)="checkMail()" class="form-control" placeholder="Correo electrónico" type="email"
           [ngModelOptions]="{standalone: false}" required>
-        <p class="alert-danger" *ngIf="this.errorPass===true">Correo no válido</p>
-        <p class="alert-danger" *ngIf="this.errorPass===true">Correo ya utilizado</p>
       </div> <!-- correo// -->
+      <p class="alert-danger" *ngIf="this.errorMail===true">Correo no válido</p>
 
       <div class="form-group input-group">
         <!-- password -->
@@ -54,10 +58,14 @@
           <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
         </div>
         <input name= "check-contrasena" [(ngModel)]="checkpass" (change)="checkPassword()" class="form-control" placeholder="Repite constraseña" type="password" required>
-        <p class="alert-danger" *ngIf="this.errorPass===true">La contraseña no coincide</p>
       </div> <!-- form-group// -->
+      <p class="alert-danger" *ngIf="errorPass===true">La contraseña no coincide</p>
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+          <strong>Usuario o correo existente, favor de cambiarlo</strong>
+      </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="checkAll()"> Create Account </button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="checkAll() || !f.valid"
+        > Crear Cuenta</button>
       </div> <!-- form-group// -->
       <p class="text-center">Ya tienes una cuenta? <a href="">Log In</a> </p>
     </form>

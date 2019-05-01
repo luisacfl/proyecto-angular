@@ -18,7 +18,7 @@ export class RegistroComponent implements OnInit {
   errorPass: boolean;
   errorMail: boolean;
   checkpass: string;
-  
+
   constructor( private route: ActivatedRoute,
                private usersService: UsersService,
                private location: Location,
@@ -31,11 +31,14 @@ export class RegistroComponent implements OnInit {
     this.errorMail = false;
     this.user = new Usuario (this.usersService.getNextId(),'','','','','',3);
   }
-  submit (formulario: NgForm){
+  submit(formulario: NgForm){
+    console.log("submit");
     if(!this.usersService.addUser(this.user)){
       this.error = true;
     }
-    this.router.navigate(['/home']);
+    else{
+      this.router.navigate(['/home']);
+    }
   }
   cancelar(){
     this.location.back();
@@ -59,9 +62,9 @@ export class RegistroComponent implements OnInit {
   checkMail(){
     const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (validEmailRegEx.test(this.user.correo)) {
-      this.errorPass=false;
+      this.errorMail=false;
     }else {
-      this.errorPass = true;
+      this.errorMail = true;
     }
   }
   checkAll(){
