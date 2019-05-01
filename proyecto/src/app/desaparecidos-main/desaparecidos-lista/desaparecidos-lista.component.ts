@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Desaparecidx } from 'src/app/desap/Desaparecidx';
 import { Subscription } from 'rxjs';
-import { DesapService } from 'src/app/desap/desap.service';
+import { Desaparecidx } from 'src/app/Desaparecidx';
+import { DesapService } from 'src/app/services/desap/desap.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

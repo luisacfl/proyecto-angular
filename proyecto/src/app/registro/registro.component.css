@@ -1,61 +1,22 @@
-* {box-sizing: border-box}
-.container {
-  padding: 16px;
-}
-label{
-  display: block;
+.divider-text {
+  position: relative;
   text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-input[type=text], input[type=password] {
+.divider-text span {
+  padding: 7px;
+  font-size: 12px;
+  position: relative;   
+  z-index: 2;
+}
+.divider-text:after {
+  content: "";
+  position: absolute;
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  text-align: center;
-}
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-  
-}
-.registerbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-.registerbtn:hover {
-  opacity:1;
-}
-a {
-  color: dodgerblue;
-}
-.TYC{
-  padding-top: 5px;
-}
-.RedesSociales{
-  padding: 3px;
-  text-align: center;
+  border-bottom: 1px solid #ddd;
+  top: 55%;
+  left: 0;
+  z-index: 1;
 }
 
-
-.signin,.register , .TYC {
-  background-color: #f1f1f1;
-  text-align: center;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}

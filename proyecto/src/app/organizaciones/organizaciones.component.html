@@ -1,0 +1,15 @@
+<h1 class="text-center m-4">
+  Organizaciones Afiliadas
+</h1>
+<div class="row m-2">
+    <div *ngFor="let u of users">
+        <app-organizacion 
+          *ngIf = "u.tipo===1"
+          [user]="u"
+          class = "card m-5"
+        >
+      </app-organizacion>
+    </div>
+</div>
+
+

@@ -14,6 +14,16 @@
           <a class="nav-link" href="#" routerLink="/home">#AquiSeLosLlevaron
             <span class="sr-only">(current)</span>
           </a>
+<<<<<<< HEAD
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
+        </li>
+      </ul>
+=======
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -30,28 +40,15 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" href="#" routerLink="/listado">Listado</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" href="#" routerLink="/grafs">Gráficos</a>
+          <li class="nav-item reg" routerLinkActive="active">
+            <a class="nav-link" href="#" routerLink="/login">Log In</a>
           </li>
           <li class="nav-item reg" routerLinkActive="active">
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="#" routerLink="/listado">Listado</a>
-        </li>
-        
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
-        </li>
-        <li class="nav-item reg" routerLinkActive="active">
-            <a class="nav-link" href="#" routerLink="/login">Log In</a>
-        </li>
-        <li class="nav-item reg" routerLinkActive="active">
-          <a class="nav-link" href="#" routerLink="/registro">Registro</a>
-        </li>
-      </ul>
+              <a class="nav-link" href="#" routerLink="/registro">Registro</a>
+            </li>
+        </ul>
+      </div>
+>>>>>>> 002ac8cb8cf88e4b524dd93c8bd963fa0277b1d1
     </div>
   </div>
 </nav>
