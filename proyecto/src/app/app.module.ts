@@ -19,6 +19,8 @@ import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-e
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { OrganizacionComponent } from './organizaciones/organizacion/organizacion.component';
+import { GeocoderService } from './services/geocoder.service';
+
 //import { GrafsComponent } from './grafs/grafs.component';  
 
 @NgModule({
@@ -49,7 +51,7 @@ import { OrganizacionComponent } from './organizaciones/organizacion/organizacio
     }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [GeocoderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
