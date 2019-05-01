@@ -1,0 +1,190 @@
+<div class="container-fluid">
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+
+      <hr>
+
+      <h3>Información del sujeto</h3>
+
+      <div class="row ">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3" *ngIf="modoAdd">
+          <label for="">Nombre*</label>
+          <input [(ngModel)]="desaparecidx.prim_nombre" type="text" class="form-control prim_nombre" name="prim_nombre" required>
+        </div>
+        <div class="col-md-3"*ngIf="modoAdd">
+          <label for="">Apellido Paterno*</label>
+          <input [(ngModel)]="desaparecidx.apellido_pat" type="text" class="form-control apellido_pat" name="apellido_pat" required>
+        </div>
+        <div class="col-md-3">
+          <label for="">Apellido Materno</label>
+          <input [(ngModel)]="desaparecidx.apellido_mat" type="text" class="form-control apellido_mat" name="apellido_mat" >
+        </div>
+        <div class="col-md-1">
+          <label for="">Edad</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_edad" type="number" class="form-control fuerocomun_edad" name="fuerocomun_edad" >
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="form-check col-md-1 " *ngIf="modoAdd">
+              <label class="form-check-label">
+                  <input [(ngModel)]="desaparecidx.fuerocomun_sexo"
+                  type="radio" 
+                  class="form-check-input sexoF" 
+                  name="sexo"  
+                  value="F">
+                    Mujer
+              </label>
+          </div>
+
+          <div class="form-check" *ngIf="modoAdd">
+              <label class="form-check-label col-md-1">
+                  <input 
+                    [(ngModel)]="desaparecidx.fuerocomun_sexo"
+                    type="radio" 
+                    class="form-check-input sexoM"  
+                    name="sexo" 
+                    value="M">
+                        Hombre
+              </label>
+          </div>
+
+          <div class="col-md-2">
+              <label for="">Etnia</label>
+              <input [(ngModel)]= "desaparecidx.fuerocomun_etnia" name="etnia" type="text" class="form-control fuerocomun_etnia" name="fuerocomun_etnia" >
+          </div>
+
+            <div class="col-md-2">
+                <label for="">Estatura</label>
+                <input [(ngModel)]= "desaparecidx.fuerocomun_estatura" name="estatura" type="text" class="form-control fuerocomun_estatura" name="fuerocomun_estatura" >
+            </div>
+
+              <div class="form-check col-md-1 " *ngIf="!modoAdd">
+                  <label class="form-check-label">
+                      <input [(ngModel)]="desaparecidx.status"
+                      type="radio" 
+                      class="form-check-input " 
+                      name="status"  
+                      value="delete">
+                        Encontrado
+                  </label>
+              </div>
+    
+              <div class="form-check" *ngIf="!modoAdd">
+                  <label class="form-check-label col-md-1">
+                      <input 
+                        [(ngModel)]="desaparecidx.status"
+                        type="radio" 
+                        class="form-check-input "  
+                        name="status" 
+                        value="update">
+                            Desaparecido
+                  </label>
+              </div>
+      </div>
+
+      <div class="row ">
+          <div class="col-md-1">
+          </div>
+        <div class="col-md-3">
+          <label for="">Descripción</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_descripcion" name="desc" type="text" class="form-control fuerocomun_descripcion" name="fuerocomun_descripcion">
+        </div>
+        <div class="col-md-3">
+          <label for="">Complexión</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_complexion" name="comp" type="text" class="form-control fuerocomun_complexion" name="fuerocomun_complexion" >
+        </div>
+        <div class="col-md-3">
+          <label for="">Discapacidad</label>
+          <input [(ngModel)]= "desaparecidx.fuerocomun_discapacidad" name="disc" type="text" class="form-control fuerocomun_discapacidad" name="fuerocomun_discapacidad">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+          <label for="">Nacionalidad</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_nacionalidad" name="fuerocomun_nacionalidad" type="text" class="form-control fuerocomun_nacionalidad " >
+        </div>
+      </div>
+      
+      <hr>
+
+      <h3>Atentado</h3>
+
+      <div class="row">
+          <div class="col-md-1">
+          </div>
+        <div class="col-md-3">
+          <label for="">Municipio</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_desapmunicipio" name="fuerocomun_desapmunicipio" type="text" class="form-control fuerocomun_desapmunicipio">
+        </div>
+        <div class="col-md-3">
+          <label for="">Estado*</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_desapentidad" name="fuerocomun_desapentidad" type="text" class="form-control fuerocomun_desapentidad" required>
+        </div>
+        <div class="col-md-3">
+          <label for="">País*</label>
+          <input [(ngModel)]= "desaparecidx.fuerocomun_desappais" name="fuerocomun_desappais" type="text" class="form-control fuerocomun_desappais" required>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-1">
+          </div>
+        <div class="col-md-2">
+          <label for="">Localidad</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_desaplocalidad" name="fuerocomun_desaplocalidad" type="text" class="form-control fuerocomun_desaplocalidad" >
+        </div>
+        
+        <div class="col-md-2">
+          <label for="">Dependencia</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_dependencia" name="fuerocomun_dependencia" type="text" class="form-control fuerocomun_dependencia" >
+        </div>
+        <div class="col-md-2">
+          <label for="">Fecha</label>
+          <input [(ngModel)]="desaparecidx.fuerocomun_desapfecha" name="fuerocomun_desapfecha"type="date" class="form-control fuerocomun_desapfecha" >
+        </div>
+        <div class="col-md-2">
+          <label for="">Hora</label>
+          <input [(ngModel)]= "desaparecidx.fuerocomun_desaphora" name="fuerocomun_desaphora" type="time" class="form-control fuerocomun_desaphora" >
+        </div>
+      </div>
+
+      <hr>
+
+      <h3>Coordenadas</h3>
+
+      <div class="row ">
+          <div class="col-md-1">
+          </div>
+        <div class="col-md-5">
+          <label for="">Latitud</label>
+          <input [(ngModel)]="desaparecidx.lat"  name="lat"type="text" class="form-control lat" >
+        </div>
+        <div class="col-md-5">
+          <label for="">Longitud</label>
+          <input [(ngModel)]="desaparecidx.long" name="long" type="text" class="form-control long">
+        </div>
+      </div>
+
+      <div class="modal-footer center">
+          <p>*Campos obligatorios</p>
+        </div>
+
+      <div class="modal-footer center btn-group-lg">
+        <button (click)="regresar()" type="button" class="btn btn-secondary">
+          Regresar
+        </button>
+        <button type="submit" class="btn btn-primary save" [disabled]="!f.valid">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

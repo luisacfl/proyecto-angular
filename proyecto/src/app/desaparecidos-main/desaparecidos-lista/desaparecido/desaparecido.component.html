@@ -1,0 +1,25 @@
+<div class="media col-6 mt-2" id="modelo">
+  
+    <div class="media-left align-self-center botones-edicion">
+        <div class="row" (click)="mostrarDetalle()">
+          <a name="" id="" class="btn btn-success btn-lg" role="button"><i class="fas fa-search"></i></a>
+        </div>
+      </div>
+
+  <div class="media-body text-center">
+    <h4 class="nombre">{{desaparecidx.prim_nombre}} {{desaparecidx.seg_nombre}} {{desaparecidx.apellido_pat}} {{desaparecidx.apellido_mat}}</h4>
+    <p class="edad">{{desaparecidx.fuerocomun_edad}} años</p>
+    <p class="municipio"> {{desaparecidx.fuerocomun_desapmunicipio}}, {{desaparecidx.fuerocomun_desapentidad}}</p>
+    <p class="pais">{{desaparecidx.fuerocomun_desappais}}</p>
+    <p class="estatus" *ngIf= "this.desaparecidx.status == 'update' ">Desaparecido</p>
+    <p class="enc" *ngIf= "this.desaparecidx.status == 'delete' ">Encontrado</p>
+  </div>
+
+  <div class="media-right align-self-center botones-edicion">
+    <div class="row" (click)="editar()">
+        <div class="btn btn-warning btn-lg edit"><i class="fas fa-pencil-alt  edit  "></i></div>
+    </div>
+  </div>
+  
+
+</div>

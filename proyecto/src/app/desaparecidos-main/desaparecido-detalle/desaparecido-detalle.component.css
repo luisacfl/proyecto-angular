@@ -1,0 +1,17 @@
+.enc{
+    color: rgb(32, 180, 32);
+    font-size: 200%;
+}
+
+.estatus{
+    color: rgb(212, 26, 26);
+    font-size: 200%;
+}
+
+h2{
+    padding: 1%;
+}
+
+#btSeguir{
+    padding: 3%;
+}

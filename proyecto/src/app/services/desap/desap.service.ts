@@ -35,5 +35,42 @@ export class DesapService {
     return this.http.post<Desaparecidx>(this.desapUrl, desap, httpOptions);
   }
 
+  add(desap: Desaparecidx): boolean {
+    desap.id = this.lastId++;
 
+    const d = this.desaparecidxs.find((d)=> d === desap);
+    if(d) {
+      this.lastId--;
+      return false;
+    }
+    
+    this.desaparecidxs.push(Object.assign({}, desap)); 
+    this.notificarCambios();
+    return true;
+  }
+
+  edit(desap: Desaparecidx) {
+
+    const pos = this.desaparecidxs.findIndex(d => d.id === desap.id);
+
+    Object.assign(this.desaparecidxs[pos], desap);
+    this.notificarCambios();
+}
+
+  getNextId(): number {
+    return this.lastId;
+  }
+
+  getDesaparecidxs(): Desaparecidx[]{
+    return this.desaparecidxs.slice();
+  }
+
+  getDesaparecidx(id: number): Desaparecidx {
+    const pos = this.desaparecidxs.findIndex(d => d.id === id);
+    return Object.assign({}, this.desaparecidxs[pos]);
+  }
+
+  notificarCambios() {
+    this.cambiaDato.next(this.desaparecidxs.slice());
+}
 }
