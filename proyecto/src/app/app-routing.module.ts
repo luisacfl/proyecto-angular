@@ -8,6 +8,7 @@ import { DesaparecidoDetalleComponent } from './desaparecidos-main/desaparecido-
 import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-edit/desaparecidos-edit.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { GrafsComponent } from './grafs/grafs.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: ':id/edit', component: DesaparecidosEditComponent}
     ]
   },
+  {path: 'grafs', component: GrafsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent}
 ];

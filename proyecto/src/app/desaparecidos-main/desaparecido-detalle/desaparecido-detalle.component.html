@@ -1,26 +1,48 @@
-
 <div class="media-body ">
-  <h4 class="nombre"> {{desaparecidx.prim_nombre}} {{desaparecidx.seg_nombre}} {{desaparecidx.apellido_pat}} {{desaparecidx.apellido_mat}}</h4>
-  <p class="edad">{{desaparecidx.fuerocomun_edad}} Años</p>
-  <p class="complexion">Complexión: {{desaparecidx.fuerocomun_complexion}}</p>
-  <p class="dependencia">Dependencia: {{desaparecidx.fuerocomun_dependencia}}</p>
-  <p class="entidad">Entidad: {{desaparecidx.fuerocomun_desapentidad}}</p>
-  <p class="fechadesp">Fecha de desaparición: {{desaparecidx.fuerocomun_desapfecha}}</p>
-  <p class="horadesp">Hora de desaparición: {{desaparecidx.fuerocomun_desaphora}}</p>
-  <p class="localidad">Localidad: {{desaparecidx.fuerocomun_desaplocalidad}}</p>
-  <p class="municipio">Municipio: {{desaparecidx.fuerocomun_desapmunicipio}}</p>
-  <p class="pais">País: {{desaparecidx.fuerocomun_desappais}}</p>
-  <p class="descripcion">Descripción: {{desaparecidx.fuerocomun_descripcion}}</p>
-  <p class="discapacidad">Discapacidad: {{desaparecidx.fuerocomun_discapacidad}}</p>
-  <p class="estatura">Estatura: {{desaparecidx.fuerocomun_estatura}}</p>
-  <p class="etnia">Etnia: {{desaparecidx.fuerocomun_etnia}}</p>
-  <p class="nacionalidad">Nacionalidad: {{desaparecidx.fuerocomun_nacionalidad}}</p>
-  <p class="sexo">Sexo: {{desaparecidx.fuerocomun_sexo}}</p>
-  <p class="estatus" *ngIf= "this.desaparecidx.status == 'update' ">Desaparecido</p>
-  <p class="enc" *ngIf= "this.desaparecidx.status == 'delete' ">Encontrado</p>
-  <p class="duplicado">Duplicado: {{desaparecidx.duplicado}}</p>
-</div>
+  <h2 class="nombre"> {{desaparecidx.prim_nombre}} {{desaparecidx.seg_nombre}} {{desaparecidx.apellido_pat}}
+    {{desaparecidx.apellido_mat}}</h2>
+  
 
-<button (click)= "regresar()" type="button" id="btRegresar" class="btn btn-warning btn-lg mt-2" data-toggle="modal" data-target="#modelId">
-    Regresar
-</button>
+  <button (click)="regresar()" type="button" id="btRegresar" class="btn btn-warning btn-lg mt-2" data-toggle="modal"
+        data-target="#modelId">
+      Regresar
+    </button>
+
+    <div class="text-center">
+
+        <p class="estatus" *ngIf="this.desaparecidx.status == 'update' ">Desaparecido</p>
+        <p class="enc" *ngIf="this.desaparecidx.status == 'delete' ">Encontrado</p>
+
+    </div>
+    
+  
+    <hr>
+
+  <div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-4">
+      <h4>Información Personal</h4>
+      <p class="edad">{{desaparecidx.fuerocomun_edad}} años</p>
+      <p class="descripcion">Descripción: {{desaparecidx.fuerocomun_descripcion}}</p>
+      <p class="sexo">Sexo: {{desaparecidx.fuerocomun_sexo}}</p>
+      <p class="estatura">Estatura: {{desaparecidx.fuerocomun_estatura}}</p>
+      <p class="nacionalidad">Nacionalidad: {{desaparecidx.fuerocomun_nacionalidad}}</p>
+      <p class="etnia">Etnia: {{desaparecidx.fuerocomun_etnia}}</p>
+      <p class="discapacidad">Discapacidad: {{desaparecidx.fuerocomun_discapacidad}}</p>
+      <p class="complexion">Complexión: {{desaparecidx.fuerocomun_complexion}}</p>
+    </div>
+    <hr>
+    <div class="col-md-4">
+      <h4>Visto por última vez</h4>
+      <p class="dependencia">Dependencia: {{desaparecidx.fuerocomun_dependencia}}</p>
+      <p class="localidad">Localidad: {{desaparecidx.fuerocomun_desaplocalidad}}</p>
+      <p class="municipio">Municipio: {{desaparecidx.fuerocomun_desapmunicipio}}</p>
+      <p class="entidad">Entidad: {{desaparecidx.fuerocomun_desapentidad}}</p>
+      <p class="pais">País: {{desaparecidx.fuerocomun_desappais}}</p>
+      <p class="fechadesp">Fecha de desaparición: {{desaparecidx.fuerocomun_desapfecha}}</p>
+      <p class="horadesp">Hora de desaparición: {{desaparecidx.fuerocomun_desaphora}}</p>
+    </div>
+  </div>
+</div>
