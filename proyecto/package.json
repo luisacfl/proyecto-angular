@@ -22,6 +22,7 @@
     "@angular/router": "~7.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "angular-google-maps-geocoder": "0.0.4",
+    "angular-pipes": "^9.0.2",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "jquery": "^3.4.0",
