@@ -20,7 +20,7 @@
             Buscar
         </button>
 
-        <button (click) ="crear()" type="button" id="btCrear" class="btn btn-primary btn-lg mt-2" data-toggle="modal" data-target="#modelId">
+        <button *ngIf='modo < 3 && modo > -1' (click) ="crear()" type="button" id="btCrear" class="btn btn-primary btn-lg mt-2" data-toggle="modal" data-target="#modelId">
             Crear Entrada
         </button>
       </div>

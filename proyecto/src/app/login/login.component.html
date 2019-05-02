@@ -1,24 +1,20 @@
-<form action="">
+<form #f ="ngForm" (ngSubmit)="submit(f)">
     <div class="imgcontainer">
       <img src="" alt="#AquiSeLosLlevaron" class="Logo">
     </div>
   
     <div class="container">
-
-      <label for=""><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>    
+      <label for="username"><b>Username</b></label>
+      <input type="text" [(ngModel)]="usuario" placeholder="Enter Username" name="username" required>    
   
       <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-  
+      <input type="password" [(ngModel)]="contra" placeholder="Enter Password" name="password" required>
     </div>
   
-    <div class="container" style="background-color:#f1f1f1">
-            <button type="submit">Login</button>
-    </div>
-
-    <div class="container registrarse">
-            <p>¿Aun no tiene cuenta con nosotros? <a href="#" routerLink="/registro" >Registro</a>.</p>
-          </div>
+    <button type="submit" [disabled]="!f.valid">Login</button>
  
 </form>
+
+<div class="container registrarse">
+  <p>¿Aun no tiene cuenta con nosotros? <a href="#" routerLink="/registro" >Registro</a>.</p>
+</div>

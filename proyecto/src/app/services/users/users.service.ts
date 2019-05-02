@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 export class UsersService {
   private lastId = 1;
   cambiaDato = new Subject<Usuario[]>();
+  modousuario=0;
   users: Usuario[] = [
     new Usuario(this.lastId++, 'Administrador', '', 'admin', 'pass123','luisa.fl.97@gmail.com', 0),
     new Usuario(this.lastId++, 'Organización Ejemplo 1', '', 'orgej1','org@poramoraellxs.com', 'contra123', 1),

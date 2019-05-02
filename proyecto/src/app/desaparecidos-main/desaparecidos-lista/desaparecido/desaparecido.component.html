@@ -15,7 +15,7 @@
     <p class="enc" *ngIf= "this.desaparecidx.status == 'delete' ">Encontrado</p>
   </div>
 
-  <div class="media-right align-self-center botones-edicion">
+  <div *ngIf='modo == 0'class="media-right align-self-center botones-edicion">
     <div class="row" (click)="editar()">
         <div class="btn btn-warning btn-lg edit"><i class="fas fa-pencil-alt  edit  "></i></div>
     </div>
