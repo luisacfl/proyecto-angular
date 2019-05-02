@@ -51,7 +51,7 @@
             <button type="button" class="btn btn-success">Buscar</button>
         </div>
     </div>
-    <div class="col-xs-1 justify-content-center">
+    <div *ngIf='modo < 3 && modo > -1' class="col-xs-1 justify-content-center">
         <div class="row justify-content-center p-3">
             <button type="button" class="btn btn-info">Registrar persona desaparecida</button>
         </div>
