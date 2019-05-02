@@ -12,35 +12,43 @@
 
     <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav ml-auto">
-      <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active" routerLinkActive="active">
-            <a class="nav-link" href="#" routerLink="/home">#AquiSeLosLlevaron
+          
+          <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/home">#AquiSeLosLlevaron
                   <span class="sr-only">(current)</span>
                 </a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
-            </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" href="#" routerLink="/listado">Listado</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" href="#" routerLink="/grafs">Gráficos</a>
-          </li>
-          <li class="nav-item reg" routerLinkActive="active">
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
-        </li>
-        <li class="nav-item reg" routerLinkActive="active">
-            <a class="nav-link" href="#" routerLink="/login">Log In</a>
-        </li>
-        <li  *ngIf="modo ==  -1" class="nav-item reg" routerLinkActive="active">
-            <a class="nav-link" href="#" routerLink="/registro">Registro</a>
-        </li>
-        </ul>
-      </div>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/listado">Listado</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/grafs">Gráficos</a>
+              </li>
+              <li class="nav-item reg" routerLinkActive="active">
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
+              </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/listado">Listado</a>
+              </li>
+
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
+              </li>
+              <li class="nav-item reg" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/login">Log In</a>
+              </li>
+              <li class="nav-item reg" routerLinkActive="active">
+                <a class="nav-link" href="#" routerLink="/registro">Registro</a>
+              </li>
+            </ul>
+          </div>
       </ul>
     </div>
   </div>
