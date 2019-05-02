@@ -2,7 +2,7 @@
   <div class="row">
       <div class="col-4">
           <div class="form-group">
-              <input type="text" name="" id="searchNombre" class="form-control" placeholder="Nombre"
+              <input type="text" name="" [(ngModel)]="nameSearch" id="searchNombre" class="form-control" placeholder="Nombre"
                   aria-describedby="helpId">
               <input type="text" name="" id="searchEdad" class="form-control mt-2" placeholder="Edad"
               aria-describedby="helpId">
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<app-desaparecido *ngFor = "let d of desaparecidxs" [desaparecidx]="d"
+<app-desaparecido *ngFor = "let d of desaparecidxs | FilterPipe: nameSearch" [desaparecidx]="d"
     (mostrarDetalles)="mostrarDetalle($event)"
     (editarDesap)="editar($event)">
 </app-desaparecido>

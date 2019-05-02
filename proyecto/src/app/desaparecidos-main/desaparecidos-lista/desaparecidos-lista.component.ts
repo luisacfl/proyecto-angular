@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Desaparecidx } from 'src/app/Desaparecidx';
 import { DesapService } from 'src/app/services/desap/desap.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FiltrarAlumPipe } from '../filtrar-alum.pipe';
+
 
 @Component({
   selector: 'app-desaparecidos-lista',
@@ -10,13 +12,14 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./desaparecidos-lista.component.css']
 })
 export class DesaparecidosListaComponent implements OnInit {
-
+  nameSearch: string;
   desaparecidxs: Desaparecidx[];
   private subscript: Subscription;
 
   constructor(private desapService: DesapService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private filterPipe: FiltrarAlumPipe) { }
 
   ngOnInit() {
     this.desaparecidxs = this.desapService.getDesaparecidxs();
