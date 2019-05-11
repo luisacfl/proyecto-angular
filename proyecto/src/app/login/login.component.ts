@@ -4,7 +4,7 @@ import { UsersService } from '../services/users/users.service';
 import { Usuario } from '../Usuario';
 import { Router } from '@angular/router';
 import { CurrentuserService } from '../services/currentuser/currentuser.service';
-import { currentId } from 'async_hooks';
+//import { currentId } from 'async_hooks';
 
 @Component({
   selector: 'app-login',

@@ -50,6 +50,7 @@ export class DesapService {
     this.desaparecidxs.push(Object.assign({}, desap));
     //llamar al geocoder
     /*this.latLong = this.geocoder.getLatLong(this.getDireccion(desap));
+    SI TIENE DIRECCION EN VES DE NO ESPECIFICADO, 
     if (this.latLong.length > 0) {
       this.assignLatLong(desap, this.latLong);
       console.log(desap);
@@ -59,6 +60,7 @@ export class DesapService {
   }
 
   getDireccion(desap: Desaparecidx) {
+    //devuelve la direccion en string para el geocoder
     this.direccion = '';
     if (desap.fuerocomun_desaplocalidad.localeCompare('NO ESPECIFICADO') !== 0 && desap.fuerocomun_desaplocalidad.length > 0){
       this.direccion = this.direccion.concat(desap.fuerocomun_desaplocalidad, ' ');

@@ -1,57 +1,49 @@
-<nav (click)="l()"class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#" routerLink="/home">
-      <img src="http://placehold.it/150x50?text=Logo" alt="">
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
-      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav ml-auto">
-          
-          <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/home">#AquiSeLosLlevaron
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" routerLink="/home">
+        <img src="http://placehold.it/150x50?text=Logo" alt="">
+      </a>
+  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
+        <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarResponsive" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" routerLinkActive="active">
+              <a class="nav-link" href="#" routerLink="/home">#AquiSeLosLlevaron
+                    <span class="sr-only">(current)</span>
+                  </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
               </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/listado">Listado</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" href="#" routerLink="/listado">Listado</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" href="#" routerLink="/grafs">Gráficos</a>
-              </li>
-              <li class="nav-item reg" routerLinkActive="active">
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/mapa">Mapa</a>
-              </li>
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/listado">Listado</a>
-              </li>
-
-              <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
-              </li>
-              <li class="nav-item reg" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/login">Log In</a>
-              </li>
-              <li class="nav-item reg" routerLinkActive="active">
-                <a class="nav-link" href="#" routerLink="/registro">Registro</a>
-              </li>
-            </ul>
-          </div>
-      </ul>
+            </li>
+            <li class="nav-item reg" routerLinkActive="active">
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
+          </li>
+          <li class="nav-item reg" routerLinkActive="active">
+              <a class="nav-link" href="#" routerLink="/login">Log In</a>
+          </li>
+          <li  class="nav-item reg" routerLinkActive="active">
+              <a class="nav-link" href="#" routerLink="/registro">Registro</a>
+          </li>
+          </ul>
+        </div>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-
-<router-outlet></router-outlet>
+  </nav>
+  
+  <router-outlet></router-outlet>
