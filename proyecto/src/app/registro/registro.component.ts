@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
     this.errorName = false;
     this.errorPass = false;
     this.errorMail = false;
-    this.user = new Usuario (this.usersService.getNextId(),'','','','','',3);
+    this.user = new Usuario (this.usersService.getNextId(),'','','','',3);
   }
   submit(formulario: NgForm){
     console.log("submit");

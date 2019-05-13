@@ -13,7 +13,7 @@ import { CurrentuserService } from '../services/currentuser/currentuser.service'
 })
 export class LoginComponent implements OnInit {
 
-usuario: string;
+correo: string;
 contra: string;
 
 users: Usuario[];
@@ -29,7 +29,7 @@ users: Usuario[];
   }
 
   submit(forma: NgForm) {
-    const u = this.users.find((us)=> us.usuario === this.usuario);
+    const u = this.users.find((us)=> us.correo === this.correo);
   
     if(u == undefined || u.contrasena != this.contra){
       alert("Datos inválidos");
