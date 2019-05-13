@@ -6,7 +6,8 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useFindAndModify: false
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
@@ -14,13 +15,11 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
+//mongoose.set('useFindAndModify', false);
+
 let db = mongoose.connection;
 
 let desapSchema = new mongoose.Schema({
-    id: {
-      type: Number,
-      required: true
-    },
     prim_nombre: {
       type: String, 
       required: true
