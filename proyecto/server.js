@@ -78,20 +78,20 @@ app.route('/api/desap/:id')
     .get((req, res) => {
         Desaparecidx.find({
             _id: req.params.id
-        }).then(desap => {
-            res.json(desap)
+        }).then(des => {
+            res.json(des)
         });
     })
     .put((req, res) => {
-        Desaparecidx.findOneAndUpdate(req.body).then(desap => {
-            res.json(desap)
+        Desaparecidx.findOneAndUpdate(req.body).then(des => {
+            res.json(des)
         });
     })
     .delete((req, res) => {
         Desaparecidx.findOneAndRemove({
             _id: req.params.id
-        }).then(desap => {
-            res.json(desap);
+        }).then(des => {
+            res.json(des);
         });
     });
 
