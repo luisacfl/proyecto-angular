@@ -1,6 +1,6 @@
 export class Desaparecidx {
     constructor(
-        public id: number,
+        public id: string,
         public prim_nombre: string,
         public seg_nombre: string,
         public apellido_pat: string,
@@ -21,9 +21,9 @@ export class Desaparecidx {
         public fuerocomun_nacionalidad: string,
         public fuerocomun_sexo: string,
         public status: string, //asumir que update es desaparecido y delete es encontrado
-        public identificado: string,
         public duplicado: number,
         public lat: number, //Lat y long son solo para el mapa, no poner en detalle
-        public long: number
+        public long: number,
+        public img: string
     ) { }
 }

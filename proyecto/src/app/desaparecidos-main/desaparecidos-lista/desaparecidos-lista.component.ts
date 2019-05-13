@@ -16,7 +16,7 @@ export class DesaparecidosListaComponent implements OnInit {
   nameSearch: string;
   modo: number;
   user: Usuario;
-  desaparecidxs: Desaparecidx[];
+  desaparecidxs: any = [];
   private subscript: Subscription;
 
   constructor(private desapService: DesapService,
@@ -27,13 +27,18 @@ export class DesaparecidosListaComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.currentUserService.user;
-    if (this.user == undefined){
+    if (this.user == undefined) {
       this.modo = -1;
     }
     else {
       this.modo = this.user.tipo;
     }
-    this.desaparecidxs = this.desapService.getDesaparecidxs();
+
+    this.desapService.getDesaparecidxs()
+      .subscribe((data: {}) => {
+        console.log(data);
+        this.desaparecidxs = data;
+      });
 
     this.subscript = this.desapService.cambiaDato.subscribe((arregloDesaparecidxs: Desaparecidx[]) => {
       this.desaparecidxs = arregloDesaparecidxs;

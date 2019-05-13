@@ -10,11 +10,20 @@ let {
 const app = express();
 const port = 3000;
 
+//CORS Middleware
+app.use( (req, res, next) => {
+    //Enabling CORS
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+    next();
+   });
 
 // parse requests of content-type - application/json
 let jsonParser = bodyParser.json();
 let corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200
 }
 
@@ -27,8 +36,7 @@ app.use(express.static(__dirname + '/public'));
 app.route('/api/desap')
     .get((req, res) => {
         Desaparecidx.find({}, {
-            _id: 0,
-            prim_nombre: 1
+            
         }, (err, docs) => {
             if (err) {
                 res.status(404).send();
