@@ -41,6 +41,7 @@ export class GeocoderService {
       // Si logra obtener un valor
       if (status == google.maps.GeocoderStatus.OK) {
         this.p = results[0].geometry.location; //asumimos que el primer resultado es el que queremos
+        //LO GUARDA EN EL ARREGLO QUE REGRESA
         this.latLong[0] = this.p.lat();
         this.latLong[1] = this.p.long();
       }
