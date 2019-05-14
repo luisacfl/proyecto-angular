@@ -3,8 +3,9 @@ export class Usuario {
         public id: number,
         public nombre: string,
         public email: string,
-        public password: string,
+        public contrasena: string,
         public token: string,
-        public acceso: string
-    ) { }
+        public tipo: number,
+        public subs: number[]
+    ){}
 }

@@ -10,21 +10,16 @@ export class UsersService {
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
   users: Usuario[] = [
-    new Usuario(this.lastId++, 'Administrador', '', 'admin', 'pass123','luisa.fl.97@gmail.com', 0),
-    new Usuario(this.lastId++, 'Organización Ejemplo 1', '', 'orgej1','org@poramoraellxs.com', 'contra123', 1),
-    new Usuario(this.lastId++, 'Jesus', 'Sandoval', 'jesus12', 'durango23','j.sandoval@gmail.com', 2),
-    new Usuario(this.lastId++, 'Maria', 'Ortiz', 'mariao', '123maria','maria@hotmail.com', 2),
-    new Usuario(this.lastId++, 'Organización Ejemplo 2', '', 'orgej2','org22@zonadocs.com', 'contra123', 1),
-    new Usuario(this.lastId++, 'Organización Ejemplo 3', '', 'orgej3','org3@fundacionfind.com', 'contra123', 1),
-    new Usuario(this.lastId++, 'Juan', 'Perez', 'juanito', '123eljuan','juanp@gmail.com', 3),
-    new Usuario(this.lastId++, 'Pedro', 'Ruiz', 'pedror94', 'contra12','pedror94@hotmail.com', 3),
-    new Usuario(this.lastId++, 'Karla', 'Sandoval', 'karla1992', 'sandoval92@gmail.com','123karlacontra', 3),
+    new Usuario(this.lastId++, 'Administrador', 'luisa.fl.97@gmail.com', 'pass123','', 0,[]),
+    new Usuario(this.lastId++, 'Organización Ejemplo 1', 'org@poramoraellxs.com','contra123', '', 1,[]),
+    new Usuario(this.lastId++, 'Jesus', 'j.sandoval@gmail.com', 'durango23','', 2,[]),
+    new Usuario(this.lastId++, 'Juan', 'juanp@gmail.com', '123eljuan','', 3,[]),
+
   ];
   constructor() { }
   addUser(user: Usuario): boolean {
     user.id = this.lastId++;
-    const u = this.users.find((us)=> us.usuario.toUpperCase() === user.usuario.toUpperCase() 
-                                    || us.correo.toLowerCase() === user.correo.toLowerCase());
+    const u = this.users.find((us)=> us.email.toLowerCase() === user.email.toLowerCase());
     if (u) { //existe usuario ó existe su correo
       this.lastId--;
       return false;

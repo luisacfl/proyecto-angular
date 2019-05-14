@@ -1,6 +1,6 @@
-/// <reference types="@types/googlemaps" />
+// <reference types="@types/googlemaps" />
 import { Injectable } from '@angular/core';
-//import { } from '@agm/core/services/google-maps-types';
+import { } from '@agm/core/services/google-maps-types';
 import {MapsAPILoader} from '@agm/core';
 import { Observable, from, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
@@ -14,7 +14,8 @@ export class GeocoderService {
   geocoder: any;
   p: any;
   google:any;
-  /*
+  
+ /* 
   constructor(private mapLoader: MapsAPILoader) {
     this.geocoder = new google.maps.Geocoder();
   }
