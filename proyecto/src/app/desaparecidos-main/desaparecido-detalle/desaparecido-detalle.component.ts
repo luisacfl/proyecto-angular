@@ -26,13 +26,13 @@ export class DesaparecidoDetalleComponent implements OnInit {
 
   ngOnInit() {
     this.getDesaparecidx();
-    /*
+    
     this.user = this.currentUserService.user;
     if(this.user == undefined)
       this.modo=-1;
     else
       this.modo=this.user.tipo;
-    console.log(this.desaparecidx);*/
+    console.log(this.user);
   }
 
   getDesaparecidx() {
