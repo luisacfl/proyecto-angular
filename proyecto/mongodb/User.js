@@ -26,6 +26,13 @@ let userSchema = mongoose.Schema({
         type: String,
         enum: ["admin", "organizacion", "afiliado", "usuario"],
         required: true,
+    },
+    seguidos:{
+        type: Array,
+        required:false,
+        contains:{
+            type:String
+        }
     }
 });
 
@@ -65,16 +72,8 @@ userSchema.statics.verificarToken = function (token) {
             } else {
                 return reject({ error: "token no es igual al de la base de datos" });
             }
-
         })
-
-
-
     })
-
-
-
-
 }
 
 userSchema.statics.verDatosToken = function(token){

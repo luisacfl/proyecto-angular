@@ -47,6 +47,10 @@ export class DesaparecidoDetalleComponent implements OnInit {
     );
   }
 
+  seguir(){
+    
+  }
+
   regresar() {
     this.location.back();
   }

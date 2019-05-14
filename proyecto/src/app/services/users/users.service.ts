@@ -10,10 +10,10 @@ export class UsersService {
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
   users: Usuario[] = [
-    new Usuario(this.lastId++, 'Administrador', 'luisa.fl.97@gmail.com', 'pass123','', 0,[]),
-    new Usuario(this.lastId++, 'Organización Ejemplo 1', 'org@poramoraellxs.com','contra123', '', 1,[]),
-    new Usuario(this.lastId++, 'Jesus', 'j.sandoval@gmail.com', 'durango23','', 2,[]),
-    new Usuario(this.lastId++, 'Juan', 'juanp@gmail.com', '123eljuan','', 3,[]),
+    new Usuario('Administrador', 'luisa.fl.97@gmail.com', 'pass123','', 0,[]),
+    new Usuario('Organización Ejemplo 1', 'org@poramoraellxs.com','contra123', '', 1,[]),
+    new Usuario('Jesus', 'j.sandoval@gmail.com', 'durango23','', 2,[]),
+    new Usuario('Juan', 'juanp@gmail.com', '123eljuan','', 3,[]),
 
   ];
   constructor() { }

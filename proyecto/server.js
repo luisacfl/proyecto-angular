@@ -10,16 +10,6 @@ let {User} = require('./mongodb/User');
 const app = express();
 const port = 3000;
 
-//CORS Middleware
-app.use( (req, res, next) => {
-    //Enabling CORS
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
-    next();
-   });
-
 // parse requests of content-type - application/json
 let jsonParser = bodyParser.json();
 let corsOptions = {
@@ -27,9 +17,19 @@ let corsOptions = {
     optionsSuccessStatus: 200
 }
 
+//CORS Middleware
+
+/*app.use( (req, res, next) => {
+    //Enabling CORS
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization');
+    next();
+   });*/
+
 app.use(jsonParser);
 app.use(cors(corsOptions));
-
 app.use(express.static(__dirname + '/public'));
 
 // routes ======================================================================
