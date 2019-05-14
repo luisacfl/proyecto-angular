@@ -1,4 +1,4 @@
-/// <reference types="@types/googlemaps" />
+/// //<reference types="@types/googlemaps" />
 import { Injectable } from '@angular/core';
 //import { } from '@agm/core/services/google-maps-types';
 import {MapsAPILoader} from '@agm/core';
