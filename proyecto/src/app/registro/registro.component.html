@@ -3,6 +3,7 @@
     <h4 class="card-title mt-3 text-center">Regístrate</h4>
     <p class="text-center">Ingresa tus datos o los de tu organización</p>
     <form #f="ngForm" (ngSubmit)="submit(f)">
+
       <div class="form-group input-group">
         <!---tipo de cuenta-->
         <div class="input-group-prepend">
@@ -12,37 +13,28 @@
           <option selected="" [value]=3> Selecciona tipo de cuenta</option>
           <option [value]=1>Organización</option>
           <option [value]=2>Afiliado</option>
-          <option [value]=3>Otro</option>
+          <option [value]=3>Normal</option>
         </select>
       </div> <!-- fin de tipo de cuenta// -->
-      <div class="form-group input-group"> <!-- Usuario// -->
-        <div class="input-group-prepend">
-          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-        </div>
-        <input [(ngModel)]="user.usuario" name="usuario" class="form-control" (change) = "checkName()" placeholder="Usuario" type="text" [ngModelOptions]="{standalone: false}" required>
-      </div> <!-- Nombre// -->
+  
       <div class="form-group input-group"> <!-- Nombre// -->
         <div class="input-group-prepend">
           <span class="input-group-text"> <i class="fa fa-user"></i> </span>
         </div>
         <input [(ngModel)]="user.nombre" name="nombre" class="form-control" (change) = "checkName()" placeholder="Nombre" type="text" [ngModelOptions]="{standalone: false}" required>
       </div> <!-- Nombre// -->
+
       <p class="alert-danger" *ngIf="this.errorName===true">El nombre no puede tener menos de 2 caracteres.</p>
 
-      <div *ngIf= "user.tipo!=1" class="form-group input-group"><!-- <Apellido>// -->
-        <div class="input-group-prepend">
-          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-        </div>
-        <input [(ngModel)]="user.apellido" name="nombre" class="form-control" placeholder="Apellido"  [ngModelOptions]="{standalone: false}" type="text">
-      </div> <!-- Apellido// -->
       <div class="form-group input-group">
         <!-- Correo// -->
         <div class="input-group-prepend">
           <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
         </div>
-        <input [(ngModel)]="user.correo" name="correo" (change)="checkMail()" class="form-control" placeholder="Correo electrónico" type="email"
+        <input [(ngModel)]="user.email" name="correo" (change)="checkMail()" class="form-control" placeholder="Correo electrónico" type="email"
           [ngModelOptions]="{standalone: false}" required>
       </div> <!-- correo// -->
+
       <p class="alert-danger" *ngIf="this.errorMail===true">Correo no válido</p>
 
       <div class="form-group input-group">
@@ -60,9 +52,11 @@
         <input name= "check-contrasena" [(ngModel)]="checkpass" (change)="checkPassword()" class="form-control" placeholder="Repite constraseña" type="password" required>
       </div> <!-- form-group// -->
       <p class="alert-danger" *ngIf="errorPass===true">La contraseña no coincide</p>
+
       <div *ngIf="error" class="alert alert-danger" role="alert">
           <strong>Usuario o correo existente, favor de cambiarlo</strong>
       </div>
+      
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block" [disabled]="checkAll() || !f.valid"
         > Crear Cuenta</button>

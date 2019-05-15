@@ -20,7 +20,7 @@ users: Usuario[];
 
   constructor(private usersService: UsersService,
     private router: Router,
-    private current: CurrentuserService
+    private current: CurrentuserService, 
     ) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ users: Usuario[];
   }
 
   submit(forma: NgForm) {
-    const u = this.users.find((us)=> us.usuario === this.usuario);
+    const u = this.users.find((us)=> us.email === this.usuario);
   
     if(u == undefined || u.contrasena != this.contra){
       alert("Datos inválidos");

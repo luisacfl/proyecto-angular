@@ -13,50 +13,62 @@ import { NgForm } from '@angular/forms';
 })
 export class DesaparecidosEditComponent implements OnInit {
   modoAdd = true;
-  id:number;
+  id: string;
   desaparecidx: Desaparecidx;
   error = false;
 
   constructor(private route: ActivatedRoute,
-    private desapService: DesapService,
-    private location: Location,
-    private router: Router) { }
+              private desapService: DesapService,
+              private location: Location,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
-    .subscribe(
-      (params) => {
-        if(params.id) {
-          this.modoAdd=false;
-          this.id = Number(params.id);
-          this.error = false;
-          this.desaparecidx = this.desapService.getDesaparecidx(this.id);
-          console.log(this.desaparecidx);
-        }else {
-          this.modoAdd=true;
-          this.error = false;
-          this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update','',0,0,0);
+      .subscribe(
+        (params) => {
+          if (params.id) {
+            this.modoAdd = false;
+            this.id = params.id;
+            this.error = false;
+            this.desapService.getDesaparecidx(this.id).subscribe((desap) => {
+              console.log(desap);
+              this.desaparecidx = desap;
+            });
+          } else {
+            this.modoAdd = true;
+            this.error = false;
+            //this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update','',0,0,0);
+          }
         }
-      }
-    );
+      );
     console.log(this.modoAdd);
   }
 
   submit(formulario: NgForm) {
     console.log(formulario);
 
-    if(this.modoAdd){
-      if(!this.desapService.add(this.desaparecidx)){
-        this.error= true;
+    if (this.modoAdd) {
+      this.desapService.add(this.desaparecidx)
+        .subscribe(res => {
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
+      if (!this.desapService.add(this.desaparecidx)) {
+        this.error = true;
       }
-    }else{
-      this.desapService.edit(this.desaparecidx);
+    } else {
+      this.desapService.edit(this.desaparecidx)
+        .subscribe(res => {
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
     }
-    
-    this.router.navigate( ['/listado']);
-}
+    this.router.navigate(['/listado']);
+  }
 
-regresar(){
+  regresar() {
     this.location.back();
   }
 }

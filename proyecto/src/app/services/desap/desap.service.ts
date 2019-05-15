@@ -34,30 +34,15 @@ export class DesapService {
   edit(desap: Desaparecidx): Observable<Desaparecidx> {
     return this.http.put<Desaparecidx>(this.desapUrl + '/:' + desap.id, desap);
   }
+  delete(desap: Desaparecidx) {
+    return this.http.delete(this.desapUrl + desap.id);
+  }
+
+  
 
   // -------------------TODO: Geocoder-----------------------------//
 
-  /*add(desap: Desaparecidx): boolean {
-    desap.id = this.lastId++;
-
-    const d = this.desaparecidxs.find((d) => d === desap);
-    if (d) {
-      this.lastId--;
-      return false;
-    }
-    this.desaparecidxs.push(Object.assign({}, desap));
-    //llamar al geocoder
-    /*this.latLong = this.geocoder.getLatLong(this.getDireccion(desap));
-    SI TIENE DIRECCION EN VES DE NO ESPECIFICADO,
-    if (this.latLong.length > 0) {
-      this.assignLatLong(desap, this.latLong);
-      console.log(desap);
-    }*
-    this.notificarCambios();
-    return true;
-  }*/
-
-  getDireccion(desap: Desaparecidx) {
+/* getDireccion(desap: Desaparecidx) {
     // devuelve la direccion en string para el geocoder
     this.direccion = '';
     if (desap.fuerocomun_desaplocalidad.localeCompare('NO ESPECIFICADO') !== 0 && desap.fuerocomun_desaplocalidad.length > 0) {
@@ -75,19 +60,12 @@ export class DesapService {
     return this.direccion;
   }
 
- /* assignLatLong(desap: Desaparecidx, coord: number[]) {
+   assignLatLong(desap: Desaparecidx, coord: number[]) {
     const pos = this.desaparecidxs.findIndex(d => d.id === desap.id);
     desap.lat = coord[0];
     desap.long = coord[1];
     Object.assign(this.desaparecidxs[pos], desap);
     this.notificarCambios();
   }
-
-  getNextId(): number {
-    return this.lastId;
-  }
-
-  notificarCambios() {
-    this.cambiaDato.next(this.desaparecidxs.slice());
-  }*/
+  */
 }

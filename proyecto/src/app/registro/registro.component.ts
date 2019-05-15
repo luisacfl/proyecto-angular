@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
     this.errorName = false;
     this.errorPass = false;
     this.errorMail = false;
-    this.user = new Usuario (this.usersService.getNextId(),'','','','','',3);
+    this.user = new Usuario (this.usersService.getNextId(),'','','','',3,[]);
   }
   submit(formulario: NgForm){
     console.log("submit");
@@ -37,7 +37,7 @@ export class RegistroComponent implements OnInit {
       this.error = true;
     }
     else{
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     }
   }
   cancelar(){
@@ -61,7 +61,7 @@ export class RegistroComponent implements OnInit {
   }
   checkMail(){
     const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (validEmailRegEx.test(this.user.correo)) {
+    if (validEmailRegEx.test(this.user.email)) {
       this.errorMail=false;
     }else {
       this.errorMail = true;

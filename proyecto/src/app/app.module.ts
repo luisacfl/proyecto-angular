@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
+import { DesapService} from './services/desap/desap.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -52,7 +53,7 @@ import { FiltrarAlumPipe } from './desaparecidos-main/filtrar-alum.pipe';
     }),
     HttpClientModule
   ],
-  providers: [/*GeocoderService*/, FiltrarAlumPipe],
+  providers: [DesapService, FiltrarAlumPipe], /*GeocoderService*/
   bootstrap: [AppComponent]
 })
 export class AppModule { }

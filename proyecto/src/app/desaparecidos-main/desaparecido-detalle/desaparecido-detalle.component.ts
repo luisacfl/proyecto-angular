@@ -13,9 +13,9 @@ import { CurrentuserService } from 'src/app/services/currentuser/currentuser.ser
 })
 export class DesaparecidoDetalleComponent implements OnInit {
 
-  modo:number;
+  modo: number;
   user: Usuario;
-  id: number;
+  id: string;
   desaparecidx: Desaparecidx;
 
   constructor(private route: ActivatedRoute,
@@ -25,21 +25,33 @@ export class DesaparecidoDetalleComponent implements OnInit {
     private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (params) => {
-        this.id = Number(params.id);
-        this.desaparecidx = this.desapService.getDesaparecidx(this.id);
-      }
-    );
+    this.getDesaparecidx();
+    
     this.user = this.currentUserService.user;
     if(this.user == undefined)
       this.modo=-1;
     else
       this.modo=this.user.tipo;
-    console.log(this.desaparecidx);
+    console.log(this.user);
   }
 
-  regresar(){
+  getDesaparecidx() {
+    this.route.params.subscribe(
+      (params) => {
+        this.id = params.id;
+        this.desapService.getDesaparecidx(this.id).subscribe(desap => {
+          console.log(desap);
+          this.desaparecidx = desap;
+        });
+      }
+    );
+  }
+
+  seguir(){
+    
+  }
+
+  regresar() {
     this.location.back();
   }
 }
