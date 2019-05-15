@@ -82,9 +82,7 @@ app.use(express.static(__dirname + '/public'));
 
     app.route('/api/user/login')
         .get((req, res) => {
-            User.find({
-                _id: req.params.id
-            }).then(des => {
+            User.find({}).then(des => {
                 res.json(des)
             });
         })
@@ -108,13 +106,11 @@ app.use(express.static(__dirname + '/public'));
                 }).catch((er)=>{
                     console.log(er);
                     res.status(400).send(er);
-                })
-                }
+                })}
             }).catch((err)=> {
                 console.log(err);
                 res.status(400).send({err:"Usuario existe"});
             })
-            
         })
 
     app.route('/api/user/logout')    

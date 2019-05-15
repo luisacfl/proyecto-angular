@@ -4,6 +4,7 @@ import { UsersService } from '../services/users/users.service';
 import { Usuario } from '../Usuario';
 import { Router } from '@angular/router';
 import { CurrentuserService } from '../services/currentuser/currentuser.service';
+import { Subscription } from 'rxjs';
 //import { currentId } from 'async_hooks';
 
 @Component({
@@ -17,6 +18,7 @@ usuario: string;
 contra: string;
 
 users: any =[];
+private subscript: Subscription;
 
   constructor(private usersService: UsersService,
     private router: Router,
@@ -25,7 +27,15 @@ users: any =[];
 
   ngOnInit() {
     this.users = this.usersService.getUsers();
-    console.log(this.users);
+    this.usersService.getUsers()
+      .subscribe((data: {}) => {
+        console.log(data);
+        this.users = data;
+      });
+
+    this.subscript = this.usersService.cambiaDato.subscribe((arregloUsers: Usuario[]) => {
+      this.users = arregloUsers;
+    });
   }
 
   submit(forma: NgForm) {

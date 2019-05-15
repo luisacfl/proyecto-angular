@@ -18,12 +18,15 @@ export class OrganizacionesComponent implements OnInit {
 
   ngOnInit() {
     this.users = this.usersService.getUsers();
-    this.subscript = this.usersService.cambiaDato
-      .subscribe(
-        (arregloUsuarios: Usuario[]) => {
-          this.users = arregloUsuarios;
-        }
-      );
+    this.usersService.getUsers()
+      .subscribe((data: {}) => {
+        console.log(data);
+        this.users = data;
+      });
+
+    this.subscript = this.usersService.cambiaDato.subscribe((arregloUsers: Usuario[]) => {
+      this.users = arregloUsers;
+    });
   }
 
   

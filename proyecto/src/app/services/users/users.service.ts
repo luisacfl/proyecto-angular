@@ -7,17 +7,10 @@ import { Observable, Subject, of } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  userUrl = 'http://localhost:3000/api/user/reg';
+  userUrl = 'http://localhost:3000/api/user/reg'||'http://localhost:3000/api/user/login';
 
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
-  /*users: Usuario[] = [
-    new Usuario('Administrador', 'luisa.fl.97@gmail.com', 'pass123','', 0,[]),
-    new Usuario('Organización Ejemplo 1', 'org@poramoraellxs.com','contra123', '', 1,[]),
-    new Usuario('Jesus', 'j.sandoval@gmail.com', 'durango23','', 2,[]),
-    new Usuario('Juan', 'juanp@gmail.com', '123eljuan','', 3,[]),
-  ];*/
-
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<Usuario[]> {
