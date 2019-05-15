@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
 import { NgForm } from '@angular/forms';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-desaparecidos-lista',
@@ -50,6 +51,9 @@ export class DesaparecidosListaComponent implements OnInit {
     else {
       this.modo = this.user.tipo;
     }
+    this.modo = this.currentUserService.modo;
+    
+    console.log(this.modo);
 
     this.desapService.getDesaparecidxs()
       .subscribe((data: {}) => {
@@ -59,17 +63,16 @@ export class DesaparecidosListaComponent implements OnInit {
 
     this.subscript = this.desapService.cambiaDato.subscribe((arregloDesaparecidxs: Desaparecidx[]) => {
       this.desaparecidxs = arregloDesaparecidxs;
-    }
-    );
+    });
   }
 
   editar(desap) {
-    this.router.navigate([desap._id, 'edit'], { relativeTo: this.route });
+    this.router.navigate([desap.id, 'edit'], { relativeTo: this.route });
   }
 
   mostrarDetalle(desapDetalle) {
     console.log(desapDetalle);
-    this.router.navigate([desapDetalle._id], { relativeTo: this.route });
+    this.router.navigate([desapDetalle.id], { relativeTo: this.route });
   }
 
   crear() {

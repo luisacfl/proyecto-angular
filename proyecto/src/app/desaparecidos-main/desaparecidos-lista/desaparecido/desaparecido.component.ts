@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Desaparecidx } from 'src/app/Desaparecidx';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-desaparecido',
@@ -16,15 +17,17 @@ export class DesaparecidoComponent implements OnInit {
 
   modo:number;
   user: Usuario;
+  private subscript: Subscription;
 
   constructor(private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
-    this.user = this.currentUserService.user;
-    if(this.user == undefined)
-      this.modo=-1;
-    else
-      this.modo=this.user.tipo;
+    this.subscript = this.currentUserService.cambiaDato
+      .subscribe(
+        (user: Usuario) => {
+          this.user = user;
+        }
+    );
   }
 
   mostrarDetalle(){

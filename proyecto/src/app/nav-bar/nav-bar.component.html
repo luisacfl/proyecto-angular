@@ -34,11 +34,17 @@
             <li class="nav-item" routerLinkActive="active">
               <a class="nav-link" href="#" routerLink="/organizaciones">Organizaciones</a>
             </li>
-            <li class="nav-item reg" routerLinkActive="active">
+            <li class="nav-item reg" routerLinkActive="active" *ngIf='this.currentUserService.modo==-1'>
               <a class="nav-link" href="#" routerLink="/login">Log In</a>
             </li>
-            <li class="nav-item reg" routerLinkActive="active">
+            <li class="nav-item reg" (click)="logout()" routerLinkActive="active" *ngIf='this.currentUserService.modo!=-1'>
+                <a class="nav-link" href="#" routerLink="/home">Log Out</a>
+              </li>
+            <li class="nav-item reg" routerLinkActive="active" *ngIf='this.currentUserService.modo==-1'>
               <a class="nav-link" href="#" routerLink="/registro">Registro</a>
+            </li>
+            <li class="nav-item reg" routerLinkActive="active" *ngIf='this.currentUserService.modo!=-1'>
+              <a class="nav-link" href="#" routerLink="/home">Bienvenidx {{this.user.nombre}}</a>
             </li>
           </ul>
         </div>

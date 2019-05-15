@@ -3,6 +3,7 @@ import { CurrentuserService } from '../services/currentuser/currentuser.service'
 import { Usuario } from '../Usuario';
 import { DesapService } from '../services/desap/desap.service';
 import { Desaparecidx } from '../Desaparecidx';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mapa',
@@ -16,6 +17,8 @@ export class MapaComponent implements OnInit {
   lat: number = 22.5208046;  //centro de México
   lng: number = -120.9572822;
 
+  private subscript:Subscription;
+
   modo: number;
   user: Usuario;
   desaparecidxs: any = [];
@@ -25,12 +28,12 @@ export class MapaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.user = this.currentUserService.user;
-    if (this.user == undefined){
-      this.modo = -1;
-    } else {
-      this.modo = this.user.tipo;
-    }
+    this.subscript = this.currentUserService.cambiaDato
+      .subscribe(
+        (user: Usuario) => {
+          this.user = user;
+        }
+    );
     this.desaparecidxs = [];
     this.desapService.getDesaparecidxs()
     .subscribe((data: {}) => {

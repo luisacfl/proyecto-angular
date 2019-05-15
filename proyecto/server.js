@@ -44,7 +44,7 @@ app.use(express.static(__dirname + '/public'));
                     if (err)
                         console.log(err);
                     if (doc) {
-                        res.status(201).send({id: doc._id});
+                        res.status(201).send({id: doc.id});
                     } else {
                         res.status(400).send({ error: "no se guardó" });
                     }
@@ -60,7 +60,7 @@ app.use(express.static(__dirname + '/public'));
     app.route('/api/desap/:id')
         .get((req, res) => {
             Desaparecidx.find({
-                _id: req.params.id
+                id: req.params.id
             }).then(des => {
                 res.json(des)
             });
@@ -97,11 +97,10 @@ app.use(express.static(__dirname + '/public'));
             });
         })
         .post((req, res)=>{
-            console.log("ENTRAAAAAA");
+            console.log("POST LOG");
             let usr = req.body.email;
             let pwd = req.body.contrasena;
             console.log("usr: "+usr+ "    pwd:" +pwd);
-            
 
             User.findOne({email:usr}).then((user)=>{
                 console.log(user);
@@ -120,7 +119,7 @@ app.use(express.static(__dirname + '/public'));
                 })}
             }).catch((err)=> {
                 console.log(err);
-                res.status(400).send({err:"Usuario existe"});
+                res.status(400).send({err:"Usuario no existe"});
             })
         })
 
@@ -146,6 +145,15 @@ app.use(express.static(__dirname + '/public'));
             })
         }
     })
+
+    app.route('/api/user/login/:id')
+        .get((req, res) => {
+            User.find({
+                id: req.params.id
+            }).then(des => {
+                res.json(des)
+            });
+        })
 
     //======REGISTRO==============
     app.route('/api/user/reg')
