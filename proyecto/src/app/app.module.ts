@@ -21,7 +21,6 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { OrganizacionComponent } from './organizaciones/organizacion/organizacion.component';
 //import { GeocoderService } from './services/geocoder.service';
-import { FiltrarAlumPipe } from './desaparecidos-main/filtrar-alum.pipe';
 
 //import { GrafsComponent } from './grafs/grafs.component';  
 
@@ -40,8 +39,7 @@ import { FiltrarAlumPipe } from './desaparecidos-main/filtrar-alum.pipe';
     DesaparecidosEditComponent,
     LoginComponent,
     RegistroComponent,
-    OrganizacionComponent,
-    FiltrarAlumPipe,
+    OrganizacionComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +51,7 @@ import { FiltrarAlumPipe } from './desaparecidos-main/filtrar-alum.pipe';
     }),
     HttpClientModule
   ],
-  providers: [DesapService, FiltrarAlumPipe], /*GeocoderService*/
+  providers: [DesapService], /*GeocoderService*/
   bootstrap: [AppComponent]
 })
 export class AppModule { }

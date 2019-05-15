@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 import { Desaparecidx } from 'src/app/Desaparecidx';
 import { DesapService } from 'src/app/services/desap/desap.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FiltrarAlumPipe } from '../filtrar-alum.pipe';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-desaparecidos-lista',
@@ -13,7 +13,19 @@ import { CurrentuserService } from 'src/app/services/currentuser/currentuser.ser
   styleUrls: ['./desaparecidos-lista.component.css']
 })
 export class DesaparecidosListaComponent implements OnInit {
+  
   nameSearch: string;
+  edadSearch: string;
+  estadoSearch: string;
+  sexoSearch: string;
+  statusSearch: boolean;
+
+  cknom: boolean;
+  cksex: boolean;
+  ckedad: boolean;
+  ckedo: boolean;
+  ckest: boolean;
+
   modo: number;
   user: Usuario;
   desaparecidxs: any = [];
@@ -22,10 +34,15 @@ export class DesaparecidosListaComponent implements OnInit {
   constructor(private desapService: DesapService,
     private router: Router,
     private route: ActivatedRoute,
-    private filterPipe: FiltrarAlumPipe,
     private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
+    this.cknom = false;
+    this.cksex = false;
+    this.ckedad = false;
+    this.ckedo = false;
+    this.ckest = false;
+
     this.user = this.currentUserService.user;
     if (this.user == undefined) {
       this.modo = -1;
@@ -57,6 +74,12 @@ export class DesaparecidosListaComponent implements OnInit {
 
   crear() {
     this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  filtrarNombre(formulario: NgForm){
+    console.log(formulario.value);
+    var desapFilter = this.desaparecidxs.slice();
+    
   }
 
 }

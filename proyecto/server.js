@@ -80,6 +80,14 @@ app.use(express.static(__dirname + '/public'));
             });
         });
 
+    //======FILTROS==============
+    app.route('/api/desap/search')
+        .get((req, res)=>{
+            Desaparecidx.find(req.body)
+                .then(des => {
+                    res.json(des);
+                });
+        });
     //======LOGIN & LOGOUT==============
 
     app.route('/api/user/login')
@@ -89,6 +97,7 @@ app.use(express.static(__dirname + '/public'));
             });
         })
         .post((req, res)=>{
+            console.log("ENTRAAAAAA");
             let usr = req.body.email;
             let pwd = req.body.contrasena;
             console.log("usr: "+usr+ "    pwd:" +pwd);
@@ -139,14 +148,15 @@ app.use(express.static(__dirname + '/public'));
     })
 
     //======REGISTRO==============
-
     app.route('/api/user/reg')
         .get((req, res) => {
+            console.log("USER get ENTER");
             User.find({}).then(des => {
                 res.json(des)
             });
         })
         .post((req, res) => {
+            console.log("USER POST ENTER");
             if (req.body.nombre && req.body.email && 
                 req.body.contrasena){
                 let newUser = new User(req.body);

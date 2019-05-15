@@ -26,16 +26,16 @@ export class DesaparecidoDetalleComponent implements OnInit {
 
   ngOnInit() {
     this.getDesaparecidx();
-    
-    this.user = this.currentUserService.user;
+   /* this.user = this.currentUserService.user;
     if(this.user == undefined)
       this.modo=-1;
     else
       this.modo=this.user.tipo;
-    console.log(this.user);
+    console.log(this.user);*/
   }
 
   getDesaparecidx() {
+
     this.route.params.subscribe(
       (params) => {
         this.id = params.id;

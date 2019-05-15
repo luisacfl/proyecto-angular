@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../services/users/users.service';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -14,10 +15,15 @@ export class RegistroComponent implements OnInit {
   id: number;
   user:Usuario;
   error: boolean;
+  users: any =[];
+  contra: string;
+
   errorName: boolean;
   errorPass: boolean;
   errorMail: boolean;
   checkpass: string;
+
+  private subscript: Subscription;
 
   constructor( private route: ActivatedRoute,
                private usersService: UsersService,
@@ -25,6 +31,16 @@ export class RegistroComponent implements OnInit {
                private router: Router) { }
 
   ngOnInit() {
+    this.users = this.usersService.getUsers();
+    this.usersService.getUsers()
+      .subscribe((data: {}) => {
+        console.log(data);
+        this.users = data;
+      });
+
+    this.subscript = this.usersService.cambiaDato.subscribe((arregloUsers: Usuario[]) => {
+      this.users = arregloUsers;
+    });
     this.error = false;
     this.errorName = false;
     this.errorPass = false;
@@ -32,7 +48,9 @@ export class RegistroComponent implements OnInit {
     this.user = new Usuario (0,'','','','',3,'',[]);
   }
   submit(formulario: NgForm){
-    console.log("submit");
+    console.log("submit ENTRA");
+    console.log(this.user);
+    console.log(this.usersService.getUsers());
     if(!this.usersService.addUser(this.user)){
       this.error = true;
     }
@@ -74,5 +92,4 @@ export class RegistroComponent implements OnInit {
   cambiosTipo(){
     console.log(this.user.tipo);
   }
-
 }

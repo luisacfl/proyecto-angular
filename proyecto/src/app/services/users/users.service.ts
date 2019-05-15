@@ -7,7 +7,8 @@ import { Observable, Subject, of } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  userUrl = 'http://localhost:3000/api/user/reg'||'http://localhost:3000/api/user/login';
+  userUrlLog = 'http://localhost:3000/api/user/login';
+  userUrl = 'http://localhost:3000/api/user/reg';
 
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
@@ -23,9 +24,12 @@ export class UsersService {
     return this.http.get<Usuario>(this.userUrl+'/:' + id);
   }
 
-  addUser(user: Usuario): Observable<Usuario> {
+  addUser(user: Usuario) {
+    console.log("ADD USER");
     user.id = this.lastId++;
-    return this.http.post<Usuario>(this.userUrl, user);
+    return this.http.post<Usuario>(this.userUrl, user)
+      .subscribe(data => console.log(data)
+      );
   }
 
   getNextId(): number{

@@ -27,9 +27,10 @@ export class DesapService {
   getDesaparecidxsObs(): Observable<Desaparecidx[]> {
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
-  add(desap: Desaparecidx): Observable<Desaparecidx> {
+  add(desap: Desaparecidx) {
     desap.id = this.lastId++;
-    return this.http.post<Desaparecidx>(this.desapUrl, desap);
+    return this.http.post<Desaparecidx>(this.desapUrl, desap)
+      .subscribe(data => console.log(data));
   }
   edit(id: number): Observable<Desaparecidx> {
     return this.http.put<Desaparecidx>(this.desapUrl + '/:', id);
@@ -40,6 +41,27 @@ export class DesapService {
   getNextId(){
     return this.lastId;
   }
+  getDesapFiltro(nameSrch: string, edadSrch: number, edoSrch: string, sxSrch: string, statusSrch:string): Observable<Desaparecidx> {
+    var urlBuild = '?';
+    if(nameSrch!=undefined){
+      //URL encode al nameSrch
+      urlBuild+="nombre="+nameSrch+"&";
+    }
+    if(edadSrch!=undefined){
+      urlBuild+="edad="+edadSrch+"&";
+    }
+    if(edoSrch!=undefined){
+      urlBuild+="estado="+edoSrch+"&";
+    }
+    if(sxSrch!=undefined){
+      urlBuild+="sexo="+sxSrch+"&";
+    }
+    if(statusSrch!=undefined){
+      urlBuild += "status=" + statusSrch + "&";
+    }
+    return this.http.get<Desaparecidx>(this.desapUrl + '/search' + urlBuild);
+  }
+
 
   // -------------------TODO: Geocoder-----------------------------//
 
