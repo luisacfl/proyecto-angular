@@ -3,6 +3,8 @@ import { Desaparecidx } from 'src/app/Desaparecidx';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-desaparecido',
@@ -19,7 +21,9 @@ export class DesaparecidoComponent implements OnInit {
   user: Usuario;
   private subscript: Subscription;
 
-  constructor(private currentUserService: CurrentuserService) { }
+  constructor(private currentUserService: CurrentuserService,
+              private router: Router,
+              private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.subscript = this.currentUserService.cambiaDato
@@ -31,6 +35,9 @@ export class DesaparecidoComponent implements OnInit {
   }
 
   mostrarDetalle(){
+    console.log("QUE ONDA");
+    console.log(this.desaparecidx);
+    this.router.navigate([this.desaparecidx.id], {relativeTo:this.route});
     this.mostrarDetalles.emit(this.desaparecidx);
   }
 

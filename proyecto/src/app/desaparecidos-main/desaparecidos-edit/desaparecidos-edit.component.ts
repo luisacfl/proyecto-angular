@@ -49,12 +49,6 @@ export class DesaparecidosEditComponent implements OnInit {
     console.log(formulario);
 
     if (this.modoAdd) {
-      this.desapService.add(this.desaparecidx)
-        .subscribe(res => {
-          console.log(res);
-        }, (err) => {
-          console.log(err);
-        });
       if (!this.desapService.add(this.desaparecidx)) {
         this.error = true;
       }
