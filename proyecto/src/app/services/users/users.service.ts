@@ -10,11 +10,16 @@ export class UsersService {
   userUrlLog = 'http://localhost:3000/api/user/login';
   userUrl = 'http://localhost:3000/api/user/reg';
 
+  usuarios: Usuario[];
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
   private lastId=0;
  
   constructor(private http: HttpClient) { }
+
+  actualizarUsuarios(){
+    this.cambiaDato.next(this.usuarios.slice());
+  }
 
   getUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.userUrl);
@@ -31,15 +36,20 @@ export class UsersService {
       .subscribe(data => console.log(data)
       );
   }
-
   getNextId(): number{
     return this.lastId;
   }
-  
- /* notificarCambios() {
-    this.cambiaDato.next(this.users.slice());
+  notificarCambios() {
+    this.cambiaDato.next(this.usuarios.slice());
   }
-  borrarUsuario(id: number): boolean {
+
+  addSubs(idUsr:number,idDesap:number): Observable<Usuario> {
+    var user = this.usuarios.find(usr => usr.id == idUsr);
+    user.seguidos.push(idDesap.toString());
+    return this.http.put<Usuario>(this.userUrl + '/:' + idUsr, user);
+  } //first=1&second=12&third=5
+
+/* borrarUsuario(id: number): boolean {
     const pos = this.users.findIndex(u => u.id === id);
     if(pos >= 0){
       console.log('usuario borrado');

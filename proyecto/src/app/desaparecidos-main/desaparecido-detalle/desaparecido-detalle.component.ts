@@ -33,36 +33,32 @@ export class DesaparecidoDetalleComponent implements OnInit {
         (user: Usuario) => {
           this.user = user;
         }
-    );
+      );
 
-    this.subscript =this.desapService.cambiaDato
-    .subscribe(
-      (des: Desaparecidx[]) => {
-        this.desap = des;
-      }
-  );
+    this.subscript = this.desapService.cambiaDato
+      .subscribe(
+        (des: Desaparecidx[]) => {
+          this.desap = des;
+        }
+      );
 
-    console.log(this.desap);
-    
     this.route.params.subscribe(
       (params) => {
         this.id = params.id;
       }
     );
-
-    this.desaparecidx=this.desapService.desaparecidos.find(u=>u.id==this.id);
-
+    this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
     //console.log(this.desaparecidx);
-    this.user = this.currentUserService.user;
-
-    if(this.user == undefined)
-      this.modo=-1;
-    else
-      this.modo=this.user.tipo;
+    //this.user = this.currentUserService.user;
+    if (this.user == undefined){
+      this.modo = -1;
+    }
+    else {
+      this.modo = this.user.tipo;
+    }
   }
 
-
-  seguir(){
+  seguir() {
     
   }
 
