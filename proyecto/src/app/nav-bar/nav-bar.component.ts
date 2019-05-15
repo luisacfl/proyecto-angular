@@ -11,29 +11,20 @@ import { Subscription } from 'rxjs';
 export class NavBarComponent implements OnInit {
   isCollapsed = false;
   user: Usuario;
-  modo:number;
   private subscript: Subscription;
   constructor(private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
-    this.user = this.currentUserService.user;
+    console.log(this.currentUserService.modo);
     this.subscript = this.currentUserService.cambiaDato
       .subscribe(
         (user: Usuario) => {
-           this.user = user;
+          this.user = user;
         }
     );
-    this.user = this.currentUserService.user;
-    if(this.user == undefined)
-      this.modo=-1;
-    else
-      this.modo=this.user.tipo;
   }
 
-  l(){
-    console.log(this.user);
+  logout(){
+    this.currentUserService.logout();
   }
-
-
-
 }

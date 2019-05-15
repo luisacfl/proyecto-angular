@@ -5,6 +5,7 @@ import { DesapService } from 'src/app/services/desap/desap.service';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-desaparecido-detalle',
@@ -17,6 +18,7 @@ export class DesaparecidoDetalleComponent implements OnInit {
   user: Usuario;
   id: number;
   desaparecidx: Desaparecidx;
+  private subscript: Subscription;
 
   constructor(private route: ActivatedRoute,
     private desapService: DesapService,
@@ -25,27 +27,32 @@ export class DesaparecidoDetalleComponent implements OnInit {
     private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
-    this.getDesaparecidx();
+    this.subscript = this.currentUserService.cambiaDato
+      .subscribe(
+        (user: Usuario) => {
+          this.user = user;
+        }
+    );
+    this.route.params.subscribe(
+      (params) => {
+        this.id = params.id;
+      }
+    );
+    this.desapService.getDesaparecidx(this.id).subscribe((data) => {
+      this.desaparecidx = data;
+    });
     
+    console.log(this.id);
+
     this.user = this.currentUserService.user;
+
     if(this.user == undefined)
       this.modo=-1;
     else
       this.modo=this.user.tipo;
-    console.log(this.user);
+
   }
 
-  getDesaparecidx() {
-    this.route.params.subscribe(
-      (params) => {
-        this.id = params.id;
-        this.desapService.getDesaparecidx(this.id).subscribe(desap => {
-          console.log(desap);
-          this.desaparecidx = desap;
-        });
-      }
-    );
-  }
 
   seguir(){
     

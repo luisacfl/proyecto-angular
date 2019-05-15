@@ -21,7 +21,7 @@ export class DesapService {
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
   getDesaparecidx(id: number): Observable<Desaparecidx> {
-    return this.http.get<Desaparecidx>(this.desapUrl + '/:' + id);
+    return this.http.get<Desaparecidx>(this.desapUrl + '/' + id);
   }
   // este método es igual al de arriba, no sé para que es, luego lo borramos
   getDesaparecidxsObs(): Observable<Desaparecidx[]> {
