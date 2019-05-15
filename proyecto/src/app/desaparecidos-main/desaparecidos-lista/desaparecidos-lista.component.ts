@@ -53,16 +53,11 @@ export class DesaparecidosListaComponent implements OnInit {
     this.modo = this.currentUserService.modo;
     
     console.log(this.modo);
-
-    this.desapService.getDesaparecidxs()
-      .subscribe((data: {}) => {
-        console.log(data);
-        this.desaparecidxs = data;
-      });
-
     this.subscript = this.desapService.cambiaDato.subscribe((arregloDesaparecidxs: Desaparecidx[]) => {
       this.desaparecidxs = arregloDesaparecidxs;
     });
+
+    this.desapService.getDesaparecidos();
   }
 
   editar(desap) {

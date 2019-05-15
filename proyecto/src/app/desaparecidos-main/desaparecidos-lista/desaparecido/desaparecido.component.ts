@@ -37,7 +37,7 @@ export class DesaparecidoComponent implements OnInit {
   mostrarDetalle(){
     console.log("QUE ONDA");
     console.log(this.desaparecidx);
-    this.router.navigate([this.desaparecidx.id], {relativeTo:this.route});
+    //this.router.navigate([this.desaparecidx.id], {relativeTo:this.route});
     this.mostrarDetalles.emit(this.desaparecidx);
   }
 

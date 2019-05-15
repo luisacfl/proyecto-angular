@@ -19,7 +19,8 @@ export class DesaparecidoDetalleComponent implements OnInit {
   id: number;
   desaparecidx: Desaparecidx;
   private subscript: Subscription;
-
+  private desapSubscription: Subscription;
+  private desap: Desaparecidx[];
   constructor(private route: ActivatedRoute,
     private desapService: DesapService,
     private location: Location,
@@ -33,17 +34,25 @@ export class DesaparecidoDetalleComponent implements OnInit {
           this.user = user;
         }
     );
+
+    this.subscript =this.desapService.cambiaDato
+    .subscribe(
+      (des: Desaparecidx[]) => {
+        this.desap = des;
+      }
+  );
+
+    console.log(this.desap);
+    
     this.route.params.subscribe(
       (params) => {
         this.id = params.id;
       }
     );
-    this.desapService.getDesaparecidx(this.id).subscribe((data) => {
-      this.desaparecidx = data;
-    });
-    
-    console.log(this.id);
 
+    this.desaparecidx=this.desapService.desaparecidos.find(u=>u.id==this.id);
+
+    //console.log(this.desaparecidx);
     this.user = this.currentUserService.user;
 
     if(this.user == undefined)

@@ -1,6 +1,9 @@
-body {
+body, html {
+	height: 100%;
+}
+.bg {
 	/* Location of the image */
-	background-image: url('http://www.revistacrisis.com/sites/revistacrisis.prod.devshop.nimblersoft.com/files/2018-12/kohler%20imagen%20.jpg');
+	background-image: url("http://www.revistacrisis.com/sites/revistacrisis.prod.devshop.nimblersoft.com/files/2018-12/kohler%20imagen%20.jpg");
 	
 	/* Background image is centered vertically and horizontally at all times */
 	background-position: center center;
@@ -19,6 +22,7 @@ body {
 	/* Set a background color that will be displayed
 	   while the background image is loading */
 	background-color: #464646;
+	height: 100%;
   }
 
   @media only screen and (max-width: 767px) {
