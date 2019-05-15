@@ -13,7 +13,7 @@ export class DesapService {
   desaparecidos: Desaparecidx[];
   direccion = '';
   latLong = [];
-  private lastId = 0;
+  private lastId = 5;
   cambiaDato = new Subject<Desaparecidx[]>();
 
   constructor(private http: HttpClient

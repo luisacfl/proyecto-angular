@@ -36,7 +36,7 @@ export class DesaparecidosEditComponent implements OnInit {
           } else {
             this.modoAdd = true;
             this.error = false;
-            //this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update','',0,0,0);
+            this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update',0,0,"");
           }
         }
       );

@@ -36,9 +36,7 @@ app.use(express.static(__dirname + '/public'));
             })
         })
         .post((req, res) => {
-            if (req.body.prim_nombre &&
-                req.body.apellido_pat &&
-                (req.body.status == "update" || req.body.status == "delete")){
+            if (req.body.prim_nombre){
                 let newDesap = new Desaparecidx(req.body);
                 newDesap.save((err, doc) => {
                     if (err)
