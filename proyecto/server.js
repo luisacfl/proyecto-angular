@@ -144,9 +144,7 @@ app.use(express.static(__dirname + '/public'));
 
     app.route('/api/user/reg')
         .get((req, res) => {
-            User.find({
-                _id: req.params.id
-            }).then(des => {
+            User.find({}).then(des => {
                 res.json(des)
             });
         })

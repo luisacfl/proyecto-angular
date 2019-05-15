@@ -8,7 +8,7 @@ import { Observable, Subject, of } from 'rxjs';
 })
 export class UsersService {
   userUrl = 'http://localhost:3000/api/user/reg';
-  direccion = '';
+
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
   /*users: Usuario[] = [
@@ -24,9 +24,9 @@ export class UsersService {
     return this.http.get<Usuario[]>(this.userUrl);
   }
 
- /* getUser(id: String): Observable<Usuario> {
+  getUser(id: String): Observable<Usuario> {
     return this.http.get<Usuario>(this.userUrl+'/:' + id);
-  }*/
+  }
 
   addUser(user: Usuario): Observable<Usuario> {
     console.log(user);
@@ -46,6 +46,5 @@ export class UsersService {
     }
     return false;
   }*/
-  
 
 }
