@@ -17,11 +17,12 @@ export class DesapService {
   constructor(private http: HttpClient
               /*private geocoder: GeocoderService*/) {
   }
-  getDesaparecidxs(): Observable<Desaparecidx[]> {
+  getDesaparecidxs() {
+    console.log(this.http.get<Desaparecidx[]>(this.desapUrl));
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
-  getDesaparecidx(id: number): Observable<Desaparecidx> {
-    return this.http.get<Desaparecidx>(this.desapUrl + '/' + id);
+  getDesaparecidx(id: number){
+    return this.http.get('http://localhost:3000/api/desap/' + id);
   }
   // este método es igual al de arriba, no sé para que es, luego lo borramos
   getDesaparecidxsObs(): Observable<Desaparecidx[]> {
@@ -33,7 +34,7 @@ export class DesapService {
       .subscribe(data => console.log(data));
   }
   edit(id: number): Observable<Desaparecidx> {
-    return this.http.put<Desaparecidx>(this.desapUrl + '/:', id);
+    return this.http.put<Desaparecidx>(this.desapUrl + '/', id);
   }
   delete(id: number) {
     return this.http.delete(this.desapUrl + id);

@@ -7,7 +7,7 @@ let {Desaparecidx} = require('./mongodb/Desaparecidx');
 let {User} = require('./mongodb/User');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // parse requests of content-type - application/json
 let jsonParser = bodyParser.json();

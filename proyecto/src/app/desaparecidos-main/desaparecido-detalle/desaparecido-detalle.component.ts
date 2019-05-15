@@ -38,12 +38,10 @@ export class DesaparecidoDetalleComponent implements OnInit {
         this.id = params.id;
       }
     );
-    this.desapService.getDesaparecidx(this.id).subscribe((data) => {
-      this.desaparecidx = data;
-    });
     
-    console.log(this.id);
-
+    this.desapService.getDesaparecidx(this.id).subscribe((desap)=>{this.desaparecidx=desap as Desaparecidx});
+    console.log(this.desaparecidx);
+  
     this.user = this.currentUserService.user;
 
     if(this.user == undefined)
@@ -51,7 +49,6 @@ export class DesaparecidoDetalleComponent implements OnInit {
     else
       this.modo=this.user.tipo;
   }
-
 
   seguir(){
     

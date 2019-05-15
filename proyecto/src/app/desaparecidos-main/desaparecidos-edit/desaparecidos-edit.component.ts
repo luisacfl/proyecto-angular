@@ -31,10 +31,7 @@ export class DesaparecidosEditComponent implements OnInit {
             this.modoAdd = false;
             this.id = params.id;
             this.error = false;
-            this.desapService.getDesaparecidx(this.id).subscribe((desap) => {
-              console.log(desap);
-              this.desaparecidx = desap;
-            });
+            this.desapService.getDesaparecidx(this.id);
           } else {
             this.modoAdd = true;
             this.error = false;
@@ -49,12 +46,7 @@ export class DesaparecidosEditComponent implements OnInit {
     console.log(formulario);
 
     if (this.modoAdd) {
-      this.desapService.add(this.desaparecidx)
-        .subscribe(res => {
-          console.log(res);
-        }, (err) => {
-          console.log(err);
-        });
+      this.desapService.add(this.desaparecidx);
       if (!this.desapService.add(this.desaparecidx)) {
         this.error = true;
       }

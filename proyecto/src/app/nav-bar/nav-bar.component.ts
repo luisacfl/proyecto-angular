@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   private subscript: Subscription;
   constructor(private currentUserService: CurrentuserService) { }
 
-  ngOnInit() {
+  ngOnInit(){
     console.log(this.currentUserService.modo);
     this.subscript = this.currentUserService.cambiaDato
       .subscribe(
@@ -25,6 +25,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logout(){
-    this.currentUserService.logout();
+    this.currentUserService.logout(this.user);
   }
 }

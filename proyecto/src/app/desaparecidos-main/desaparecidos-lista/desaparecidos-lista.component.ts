@@ -6,7 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
 import { NgForm } from '@angular/forms';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-desaparecidos-lista',
@@ -71,7 +70,6 @@ export class DesaparecidosListaComponent implements OnInit {
   }
 
   mostrarDetalle(desapDetalle) {
-    console.log(desapDetalle);
     this.router.navigate([desapDetalle.id], { relativeTo: this.route });
   }
 

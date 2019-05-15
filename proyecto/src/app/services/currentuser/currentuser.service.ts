@@ -23,9 +23,11 @@ export class CurrentuserService {
     .subscribe(data => console.log(data));
   }
 
-  logout(){
+  logout(usuario:Usuario){
     this.modo=-1;
     delete this.user;
+    return this.http.post<Usuario>(this.userURL+'/logout',usuario)
+    .subscribe(data => console.log(data));
   }
 
   notificarCambios() {
