@@ -65,7 +65,6 @@ export class DesaparecidosListaComponent implements OnInit {
   }
 
   mostrarDetalle(desapDetalle) {
-    console.log(desapDetalle);
     this.router.navigate([desapDetalle.id], { relativeTo: this.route });
   }
 

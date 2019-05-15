@@ -57,7 +57,7 @@ export class DesapService {
   }
 
   edit(id: number): Observable<Desaparecidx> {
-    return this.http.put<Desaparecidx>(this.desapUrl + '/:', id);
+    return this.http.put<Desaparecidx>(this.desapUrl + '/', id);
   }
   delete(id: number) {
     return this.http.delete(this.desapUrl + id);
