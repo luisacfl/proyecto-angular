@@ -47,11 +47,12 @@ export class DesaparecidosListaComponent implements OnInit {
   }
 
   editar(desap) {
-    this.router.navigate([desap.id, 'edit'], { relativeTo: this.route });
+    this.router.navigate([desap._id, 'edit'], { relativeTo: this.route });
   }
 
   mostrarDetalle(desapDetalle) {
-    this.router.navigate([desapDetalle.id], { relativeTo: this.route });
+    console.log(desapDetalle);
+    this.router.navigate([desapDetalle._id], { relativeTo: this.route });
   }
 
   crear() {

@@ -83,10 +83,6 @@ let desapSchema = new mongoose.Schema({
       enum: ['update', 'delete'],
       required: true
     }, //asumir que "update" es desaparecido y "delete" es encontrado
-    duplicado: {
-      type: Boolean,
-      required: true
-    },// 0 es no duplicado
     lat: {
       type: Number,
       required: false
