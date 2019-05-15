@@ -1,47 +1,39 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { Usuario } from 'src/app/Usuario';
-import { Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private lastId = 1;
+  userUrl = 'http://localhost:3000/api/user/reg';
+  direccion = '';
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
-  users: Usuario[] = [
+  /*users: Usuario[] = [
     new Usuario('Administrador', 'luisa.fl.97@gmail.com', 'pass123','', 0,[]),
     new Usuario('Organización Ejemplo 1', 'org@poramoraellxs.com','contra123', '', 1,[]),
     new Usuario('Jesus', 'j.sandoval@gmail.com', 'durango23','', 2,[]),
     new Usuario('Juan', 'juanp@gmail.com', '123eljuan','', 3,[]),
+  ];*/
 
-  ];
-  constructor() { }
-  addUser(user: Usuario): boolean {
-    user.id = this.lastId++;
-    const u = this.users.find((us)=> us.email.toLowerCase() === user.email.toLowerCase());
-    if (u) { //existe usuario ó existe su correo
-      this.lastId--;
-      return false;
-    }
-    this.users.push(Object.assign({}, user)); //creamos una copia
-    this.notificarCambios();
+  constructor(private http: HttpClient) { }
+
+  getUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.userUrl);
+  }
+
+ /* getUser(id: String): Observable<Usuario> {
+    return this.http.get<Usuario>(this.userUrl+'/:' + id);
+  }*/
+
+  addUser(user: Usuario): Observable<Usuario> {
     console.log(user);
-    return true;
+    return this.http.post<Usuario>(this.userUrl, user);
   }
-  getNextId(): number {
-    return this.lastId;
-  }
-
-  getUsers(): Usuario[] {
-    return this.users.slice();
-  }
-
-  getUser(id: number): Usuario {
-    const pos = this.users.findIndex(u => u.id === id);
-    return Object.assign({}, this.users[pos]);
-  }
-  notificarCambios() {
+  
+ /* notificarCambios() {
     this.cambiaDato.next(this.users.slice());
   }
   borrarUsuario(id: number): boolean {
@@ -53,12 +45,7 @@ export class UsersService {
       return true;
     }
     return false;
-  }
-  editUser(user: Usuario) {
-    //TODO: buscar que no exista otro alumno con el mismo nombre
-    const pos = this.users.findIndex(u => u.id === user.id);
-    Object.assign(this.users[pos], user);
-    this.notificarCambios();
-  }
+  }*/
+  
 
 }

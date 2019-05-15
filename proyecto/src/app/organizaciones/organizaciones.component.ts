@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./organizaciones.component.css']
 })
 export class OrganizacionesComponent implements OnInit {
-  users: Usuario[];
+  users: any = [];
   private subscript: Subscription;
 
   constructor(private usersService:UsersService,

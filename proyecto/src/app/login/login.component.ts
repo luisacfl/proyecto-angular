@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 usuario: string;
 contra: string;
 
-users: Usuario[];
+users: any =[];
 
   constructor(private usersService: UsersService,
     private router: Router,

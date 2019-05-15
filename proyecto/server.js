@@ -21,71 +21,41 @@ app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
 
 // routes ======================================================================
-function autenticar(req,res, next){
-    let token = req.get('x-auth');
-    if(!token){
-        res.status(401).send({error: "no hay token"});
-        return;
-    }
+    
+    //======DESAPARECIDOS==============
 
-    User.verificarToken(token).then((user)=>{
-        console.log("Token verificado ...");
-        req.userid = user._id;
-        next();
-    }).catch((err)=>{
-        res.status(401).send(err);
-    });
-
-}
-
-
-app.route('/api/desap')
-    .get((req, res) => {
-        Desaparecidx.find({}, {
-        }, (err, docs) => {
-            if (err) {
-                res.status(404).send();
-                return;
-            }
-            res.json(docs);
-        })
-    })
-    .post((req, res) => {
-        if (req.body.prim_nombre &&
-            req.body.apellido_pat &&
-            (req.body.status == "update" || req.body.status == "delete")){
-            let newDesap = new Desaparecidx(req.body);
-            newDesap.save((err, doc) => {
-                if (err)
-                    console.log(err);
-                if (doc) {
-                    res.status(201).send();
-                } else {
-                    res.status(400).send({ error: "no se guardó" });
-                }
-                return;
-            });
-            
-
-            /*Desaparecidx.create(req.body, function (err, docs) {
-                x = ObjectID();
-
-                console.log(req.body);
-                if(err) {
-                    console.log(err);
-                    res.status(400).send({
-                        error: "No se pudo crear desaparecidx."
-                    }); 
-                    return; 
+    app.route('/api/desap')
+        .get((req, res) => {
+            Desaparecidx.find({}, {
+            }, (err, docs) => {
+                if (err) {
+                    res.status(404).send();
+                    return;
                 }
                 res.json(docs);
-            });*/
-        } else {
-            res.status(400).send({
-                error: "Faltan atributos"
-            });
-        }
-    });
+            })
+        })
+        .post((req, res) => {
+            if (req.body.prim_nombre &&
+                req.body.apellido_pat &&
+                (req.body.status == "update" || req.body.status == "delete")){
+                let newDesap = new Desaparecidx(req.body);
+                newDesap.save((err, doc) => {
+                    if (err)
+                        console.log(err);
+                    if (doc) {
+                        res.status(201).send();
+                    } else {
+                        res.status(400).send({ error: "no se guardó" });
+                    }
+                    return;
+                });
+            }else {
+                res.status(400).send({
+                    error: "Faltan atributos"
+                });
+            }
+        });
 
     app.route('/api/desap/:id')
         .get((req, res) => {
@@ -112,7 +82,7 @@ app.route('/api/desap')
 
     app.route('/api/user/login')
         .get((req, res) => {
-            Usuario.find({
+            User.find({
                 _id: req.params.id
             }).then(des => {
                 res.json(des)
@@ -120,12 +90,13 @@ app.route('/api/desap')
         })
         .post((req, res)=>{
             let usr = req.body.email;
-            let pwd = req.body.password;
-            console.log("usr:"+usr+ " pwd:"+pwd);
+            let pwd = req.body.contrasena;
+            console.log("usr: "+usr+ "    pwd:" +pwd);
             
+
             User.findOne({email:usr}).then((user)=>{
                 console.log(user);
-                if(pwd == user.password){
+                if(pwd == user.contrasena){
                 let token =  user.generateToken();
                 user.token = token;
                 User.updateOne({email:usr}, user).then((usrUpdated)=>{
@@ -141,7 +112,7 @@ app.route('/api/desap')
                 }
             }).catch((err)=> {
                 console.log(err);
-                res.status(400).send(err);
+                res.status(400).send({err:"Usuario existe"});
             })
             
         })
@@ -167,9 +138,38 @@ app.route('/api/desap')
                 res.status(404).send();
             })
         }
+    })
+
+    //======REGISTRO==============
+
+    app.route('/api/user/reg')
+        .get((req, res) => {
+            User.find({
+                _id: req.params.id
+            }).then(des => {
+                res.json(des)
+            });
         })
-
-
+        .post((req, res) => {
+            if (req.body.nombre && req.body.email && 
+                req.body.contrasena){
+                let newUser = new User(req.body);
+                newUser.save((err, doc) => {
+                    if (err)
+                        console.log(err);
+                    if (doc) {
+                        res.status(201).send();
+                    } else {
+                        res.status(400).send({ error: "no se guardó" });
+                    }
+                    return;
+                });
+            }else {
+                res.status(400).send({
+                    error: "Faltan atributos"
+                });
+            }
+        });
 
     // listen (start app with node server.js) ======================================
     app.listen(port, () => console.log(`Example app listening on port ${port}! `));
@@ -177,4 +177,20 @@ app.route('/api/desap')
     function auth(req, res, next) {
 
         next();
+    }
+
+    function autenticar(req,res, next){
+        let token = req.get('x-auth');
+        if(!token){
+            res.status(401).send({error: "no hay token"});
+            return;
+        }
+
+        User.verificarToken(token).then((user)=>{
+            console.log("Token verificado ...");
+            req.userid = user._id;
+            next();
+        }).catch((err)=>{
+            res.status(401).send(err);
+        });
     }

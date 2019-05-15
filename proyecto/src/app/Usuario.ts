@@ -5,6 +5,7 @@ export class Usuario {
         public contrasena: string,
         public token: string,
         public tipo: number,
+        public org: string,
         public seguidos: Array<String>
     ){}
 }

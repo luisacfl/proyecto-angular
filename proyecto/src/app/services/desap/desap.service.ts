@@ -5,7 +5,6 @@ import { Observable, Subject, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 // import { GeocoderService } from '../geocoder.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +13,7 @@ export class DesapService {
   direccion = '';
   latLong = [];
   cambiaDato = new Subject<Desaparecidx[]>();
-  private lastId = 1;
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient
               /*private geocoder: GeocoderService*/) {
   }
   getDesaparecidxs(): Observable<Desaparecidx[]> {
@@ -32,13 +30,11 @@ export class DesapService {
     return this.http.post<Desaparecidx>(this.desapUrl, desap);
   }
   edit(desap: Desaparecidx): Observable<Desaparecidx> {
-    return this.http.put<Desaparecidx>(this.desapUrl + '/:' + desap.id, desap);
+    return this.http.put<Desaparecidx>(this.desapUrl + '/:', desap);
   }
   delete(desap: Desaparecidx) {
     return this.http.delete(this.desapUrl + desap.id);
   }
-
-  
 
   // -------------------TODO: Geocoder-----------------------------//
 

@@ -13,19 +13,22 @@ let userSchema = mongoose.Schema({
         minlength: 4,
         unique: true
     },
-    password: {
+    contrasena: {
         type: String,
         required: true,
         minlength: 6
     },
     token: {
         type: String,
+        required: false
+    },
+    tipo: {
+        type: Number,//0: Administrador 1:Organizacion 2:Afiliado 3:Normal
         required: true
     },
-    acceso: {
+    org:{
         type: String,
-        enum: ["admin", "organizacion", "afiliado", "usuario"],
-        required: true,
+        required: false
     },
     seguidos:{
         type: Array,
