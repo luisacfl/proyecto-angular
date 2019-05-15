@@ -12,6 +12,7 @@ export class DesapService {
   desapUrl = 'http://localhost:3000/api/desap';
   direccion = '';
   latLong = [];
+  private lastId = 0;
   cambiaDato = new Subject<Desaparecidx[]>();
   constructor(private http: HttpClient
               /*private geocoder: GeocoderService*/) {
@@ -19,7 +20,7 @@ export class DesapService {
   getDesaparecidxs(): Observable<Desaparecidx[]> {
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
-  getDesaparecidx(id: string): Observable<Desaparecidx> {
+  getDesaparecidx(id: number): Observable<Desaparecidx> {
     return this.http.get<Desaparecidx>(this.desapUrl + '/:' + id);
   }
   // este método es igual al de arriba, no sé para que es, luego lo borramos
@@ -27,13 +28,17 @@ export class DesapService {
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
   add(desap: Desaparecidx): Observable<Desaparecidx> {
+    desap.id = this.lastId++;
     return this.http.post<Desaparecidx>(this.desapUrl, desap);
   }
-  edit(desap: Desaparecidx): Observable<Desaparecidx> {
-    return this.http.put<Desaparecidx>(this.desapUrl + '/:', desap);
+  edit(id: number): Observable<Desaparecidx> {
+    return this.http.put<Desaparecidx>(this.desapUrl + '/:', id);
   }
-  delete(desap: Desaparecidx) {
-    return this.http.delete(this.desapUrl + desap.id);
+  delete(id: number) {
+    return this.http.delete(this.desapUrl + id);
+  }
+  getNextId(){
+    return this.lastId;
   }
 
   // -------------------TODO: Geocoder-----------------------------//

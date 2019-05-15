@@ -13,9 +13,10 @@ import { NgForm } from '@angular/forms';
 })
 export class DesaparecidosEditComponent implements OnInit {
   modoAdd = true;
-  id: string;
+  id: number;
   desaparecidx: Desaparecidx;
   error = false;
+
 
   constructor(private route: ActivatedRoute,
               private desapService: DesapService,
@@ -58,7 +59,7 @@ export class DesaparecidosEditComponent implements OnInit {
         this.error = true;
       }
     } else {
-      this.desapService.edit(this.desaparecidx)
+      this.desapService.edit(this.desaparecidx.id)
         .subscribe(res => {
           console.log(res);
         }, (err) => {

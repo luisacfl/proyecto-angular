@@ -44,7 +44,7 @@ app.use(express.static(__dirname + '/public'));
                     if (err)
                         console.log(err);
                     if (doc) {
-                        res.status(201).send();
+                        res.status(201).send({id: doc._id});
                     } else {
                         res.status(400).send({ error: "no se guardó" });
                     }
@@ -66,7 +66,9 @@ app.use(express.static(__dirname + '/public'));
             });
         })
         .put((req, res) => {
-            Desaparecidx.findOneAndUpdate(req.body).then(des => {
+            Desaparecidx.findOneAndUpdate({
+                _id: req.params.id
+            }).then(des => {
                 res.json(des)
             });
         })

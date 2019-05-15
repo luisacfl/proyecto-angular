@@ -1,5 +1,6 @@
 export class Desaparecidx {
     constructor(
+        public id: number,
         public prim_nombre: string,
         public seg_nombre: string,
         public apellido_pat: string,

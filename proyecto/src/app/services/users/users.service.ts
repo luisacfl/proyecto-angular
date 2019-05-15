@@ -11,19 +11,25 @@ export class UsersService {
 
   cambiaDato = new Subject<Usuario[]>();
   modousuario=0;
+  private lastId=0;
+ 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.userUrl);
   }
 
-  getUser(id: String): Observable<Usuario> {
+  getUser(id: number): Observable<Usuario> {
     return this.http.get<Usuario>(this.userUrl+'/:' + id);
   }
 
   addUser(user: Usuario): Observable<Usuario> {
-    console.log(user);
+    user.id = this.lastId++;
     return this.http.post<Usuario>(this.userUrl, user);
+  }
+
+  getNextId(): number{
+    return this.lastId;
   }
   
  /* notificarCambios() {
