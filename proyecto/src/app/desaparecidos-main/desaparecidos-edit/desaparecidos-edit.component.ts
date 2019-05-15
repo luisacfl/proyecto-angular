@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Desaparecidx } from 'src/app/Desaparecidx';
 import { DesapService } from 'src/app/services/desap/desap.service';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,12 +17,13 @@ export class DesaparecidosEditComponent implements OnInit {
   id: number;
   desaparecidx: Desaparecidx;
   error = false;
-
+  private desap: Desaparecidx[];
+  private subscript: Subscription;
 
   constructor(private route: ActivatedRoute,
-              private desapService: DesapService,
-              private location: Location,
-              private router: Router) { }
+    private desapService: DesapService,
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -31,7 +33,6 @@ export class DesaparecidosEditComponent implements OnInit {
             this.modoAdd = false;
             this.id = params.id;
             this.error = false;
-            this.desapService.getDesaparecidx(this.id);
           } else {
             this.modoAdd = true;
             this.error = false;
@@ -39,6 +40,17 @@ export class DesaparecidosEditComponent implements OnInit {
           }
         }
       );
+
+    this.subscript = this.desapService.cambiaDato
+      .subscribe(
+        (des: Desaparecidx[]) => {
+          this.desap = des;
+        }
+      );
+    if (!this.modoAdd) {
+      this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
+    }
+    console.log(this.desap);
     console.log(this.modoAdd);
   }
 
@@ -46,19 +58,23 @@ export class DesaparecidosEditComponent implements OnInit {
     console.log(formulario);
 
     if (this.modoAdd) {
-      this.desapService.add(this.desaparecidx);
-      if (!this.desapService.add(this.desaparecidx)) {
-        this.error = true;
-      }
+      this.desapService.add(this.desaparecidx)
+        .subscribe(res => {
+          console.log(res);
+          this.router.navigate(['/listado']);
+        }, (err) => {
+          console.log(err);
+        });
     } else {
       this.desapService.edit(this.desaparecidx.id)
         .subscribe(res => {
           console.log(res);
+          this.router.navigate(['/listado']);
         }, (err) => {
           console.log(err);
         });
     }
-    this.router.navigate(['/listado']);
+
   }
 
   regresar() {
