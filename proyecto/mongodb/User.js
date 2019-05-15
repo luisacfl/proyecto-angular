@@ -1,6 +1,11 @@
 let { mongoose } = require('./mongodb-connect')
 const jwt = require('jsonWebtoken');
 let userSchema = mongoose.Schema({
+    id: {
+        type: Number, 
+        required:true,
+        unique: true
+    },
     nombre: {
         type: String,
         required: true,

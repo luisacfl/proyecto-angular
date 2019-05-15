@@ -16,7 +16,7 @@ mongoose.connect(dbConfig.url, {
 });
 
 
-
+mongoose.set('useCreateIndex', true);
 //mongoose.set('useFindAndModify', false);
 
 let db = mongoose.connection;

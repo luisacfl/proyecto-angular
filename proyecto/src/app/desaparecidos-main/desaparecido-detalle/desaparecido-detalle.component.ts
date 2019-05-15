@@ -15,7 +15,7 @@ export class DesaparecidoDetalleComponent implements OnInit {
 
   modo: number;
   user: Usuario;
-  id: string;
+  id: number;
   desaparecidx: Desaparecidx;
 
   constructor(private route: ActivatedRoute,

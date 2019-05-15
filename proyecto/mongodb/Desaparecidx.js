@@ -1,6 +1,11 @@
 let {mongoose} = require('./mongodb-connect');
 
 let desapSchema = new mongoose.Schema({
+    id: {
+        type: Number, 
+        required:true,
+        unique: true
+    },
     prim_nombre: {
       type: String,
       required: true
