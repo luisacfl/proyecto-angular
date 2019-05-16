@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Usuario } from 'src/app/Usuario';
 import { CurrentuserService } from 'src/app/services/currentuser/currentuser.service';
 import { Subscription } from 'rxjs';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-desaparecido-detalle',
@@ -25,7 +26,8 @@ export class DesaparecidoDetalleComponent implements OnInit {
     private desapService: DesapService,
     private location: Location,
     private router: Router,
-    private currentUserService: CurrentuserService) { }
+    private currentUserService: CurrentuserService,
+    private userService: UsersService) { }
 
   ngOnInit() {
     this.subscript = this.currentUserService.cambiaDato
@@ -34,7 +36,7 @@ export class DesaparecidoDetalleComponent implements OnInit {
           this.user = user;
         }
       );
-
+    console.log('QUEONDA'+this.modo);
     this.subscript = this.desapService.cambiaDato
       .subscribe(
         (des: Desaparecidx[]) => {
@@ -59,7 +61,7 @@ export class DesaparecidoDetalleComponent implements OnInit {
   }
 
   seguir() {
-    
+    this.userService.addSubs(this.user.id, this.id);
   }
 
   regresar() {
