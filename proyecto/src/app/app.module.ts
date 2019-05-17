@@ -20,6 +20,7 @@ import { DesaparecidosEditComponent } from './desaparecidos-main/desaparecidos-e
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { OrganizacionComponent } from './organizaciones/organizacion/organizacion.component';
+import { SeguidosComponent } from './seguidos/seguidos.component';
 //import { GeocoderService } from './services/geocoder.service';
 
 //import { GrafsComponent } from './grafs/grafs.component';  
@@ -39,7 +40,8 @@ import { OrganizacionComponent } from './organizaciones/organizacion/organizacio
     DesaparecidosEditComponent,
     LoginComponent,
     RegistroComponent,
-    OrganizacionComponent
+    OrganizacionComponent,
+    SeguidosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 let { mongoose } = require('./mongodb-connect');
-//const bcrypt = require('bcrypt');
 const jwt = require ('jsonwebtoken');
 
 let userSchema = mongoose.Schema({
@@ -52,7 +51,7 @@ userSchema.methods.generateToken = function () {
     let user = this;
     let token = jwt.sign({
         _id: user._id.toHexString(),
-        acceso: user.acceso
+        tipo: user.tipo
     },
         'claveSecreta', //variable de entorno
         { expiresIn: 60 * 60 }).toString();
@@ -89,6 +88,37 @@ userSchema.statics.verificarToken = function (token) {
 userSchema.statics.verDatosToken = function(token){
     return jwt.decode(token);
 }
+
+userSchema.methods.comparePassword = function(passw) {
+    var hash;
+    let user = this;
+    console.log("compare pass "+user.contrasena);
+    console.log(passw);
+
+    return user.contrasena==passw;
+    /*return new Promise ((resolve, reject)=>{
+        bcrypt.compare(passw, user.contrasena, (err, res) => {
+            console.log("inside user"+res);
+            if(res){
+                resolve(res);
+            }
+            else {
+                console.log(err);
+                reject(res);
+            }
+            // res == true
+        }); 
+    });*/
+    
+        
+        /*function(err, isMatch) {
+        console.log(isMatch);
+        if (err) {
+        return cb(err, false);
+      }
+      return cb(null, isMatch);
+    });*/
+  };
 
 let User = mongoose.model('user', userSchema);
 

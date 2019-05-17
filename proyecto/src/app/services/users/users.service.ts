@@ -33,7 +33,7 @@ export class UsersService {
     console.log("ADD USER");
     user.id = this.lastId++;
     return this.http.post<Usuario>(this.userUrl, user)
-      .subscribe(data => console.log(data)
+      .subscribe(data => console.log(data), (err) => console.log(err)
       );
   }
   getNextId(): number{

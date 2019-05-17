@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
@@ -25,39 +24,6 @@ app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
 
 // routes ======================================================================
-    
-    //======DESAPARECIDOS==============
-
-    app.route('/api/desap')
-        .get((req, res) => {
-            Desaparecidx.find({}, {
-            }, (err, docs) => {
-                if (err) {
-                    res.status(404).send();
-                    return;
-                }
-                res.json(docs);
-            })
-        })
-        .post((req, res) => {
-            if (req.body.prim_nombre){
-                let newDesap = new Desaparecidx(req.body);
-                newDesap.save((err, doc) => {
-                    if (err)
-                        console.log(err);
-                    if (doc) {
-                        res.status(201).send({id: doc.id});
-                    } else {
-                        res.status(400).send({ error: "no se guardó" });
-                    }
-                    return;
-                });
-            }else {
-                res.status(400).send({
-                    error: "Faltan atributos"
-                });
-            }
-        });
 
 //======DESAPARECIDOS==============
 
@@ -72,7 +38,40 @@ app.route('/api/desap')
             res.json(docs);
         })
     })
-    .post(autenticar,(req, res) => {
+    .post((req, res) => {
+        if (req.body.prim_nombre) {
+            let newDesap = new Desaparecidx(req.body);
+            newDesap.save((err, doc) => {
+                if (err)
+                    console.log(err);
+                if (doc) {
+                    res.status(201).send({ id: doc.id });
+                } else {
+                    res.status(400).send({ error: "no se guardó" });
+                }
+                return;
+            });
+        } else {
+            res.status(400).send({
+                error: "Faltan atributos"
+            });
+        }
+    });
+
+//======DESAPARECIDOS==============
+
+app.route('/api/desap')
+    .get((req, res) => {
+        Desaparecidx.find({}, {
+        }, (err, docs) => {
+            if (err) {
+                res.status(404).send();
+                return;
+            }
+            res.json(docs);
+        })
+    })
+    .post(autenticar, (req, res) => {
         if (req.body.prim_nombre &&
             req.body.apellido_pat &&
             (req.body.status == "update" || req.body.status == "delete")) {
@@ -102,14 +101,14 @@ app.route('/api/desap/:id')
             res.json(des)
         });
     })
-    .put(autenticar,(req, res) => {
+    .put(autenticar, (req, res) => {
         Desaparecidx.findOneAndUpdate({
             _id: req.params.id
         }).then(des => {
             res.json(des)
         });
     })
-    .delete(autenticar,(req, res) => {
+    .delete(autenticar, (req, res) => {
         Desaparecidx.findOneAndRemove({
             _id: req.params.id
         }).then(des => {
@@ -125,7 +124,7 @@ app.route('/api/desap/search')
                 res.json(des);
             });
     });
-    
+
 //======LOGIN & LOGOUT==============
 
 app.route('/api/user/login')
@@ -137,29 +136,31 @@ app.route('/api/user/login')
     .post((req, res) => {
         console.log("POST LOG");
         let usr = req.body.email;
-        let pwd = req.body.contrasena;
+        let pwd = req.body.password;
         console.log("usr: " + usr + "    pwd:" + pwd);
-
         User.findOne({ email: usr }).then((user) => {
             console.log(user);
-            if (pwd == user.contrasena) {
-                let token = user.generateToken();
-                user.token = token;
-                User.updateOne({ email: usr }, user).then((usrUpdated) => {
-                    console.log("actualizado");
-                    console.log(usrUpdated);
-                    res.set('x-auth', token);
-                    res.send();
-                    return;
-                }).catch((er) => {
-                    console.log(er);
-                    res.status(400).send(er);
-                })
-            }
+            if(user.comparePassword(pwd)) {
+                    let token = user.generateToken();
+                    user.token = token;
+                    User.updateOne({ email: usr }, user).then((usrUpdated) => {
+                        console.log("actualizado");
+                        console.log(usrUpdated);
+                        res.set('x-auth', token);
+                        res.send({token:token});
+                        return;
+                    }).catch((er) => {
+                        console.log(er);
+                        res.status(400).send(er);
+                    })
+            } else {
+                res.status(400).send({ err: "Contraseña no coincide" });
+            };
         }).catch((err) => {
-            console.log(err);
-            res.status(400).send({ err: "Usuario no existe" });
-        })
+                console.log(err);
+                console.log(usr);
+                res.status(400).send({ err: "Usuario no existe" });
+            })
     })
 
 app.route('/api/user/logout')
@@ -196,17 +197,17 @@ app.route('/api/user/login/:id')
 
 //======REGISTRO==============
 app.route('/api/user/reg')
-    .get(autenticar,(req, res) => {
+    .get((req, res) => {
         //console.log("USER get ENTER");
         User.find({}).then(des => {
             res.json(des)
         });
     })
-    .post(autenticar,(req, res) => {
+    .post((req, res) => {
         console.log("USER POST ENTER");
         if (req.body.nombre && req.body.email &&
             req.body.contrasena) {
-            req.body.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
+            //req.body.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
             let newUser = new User(req.body);
             newUser.save((err, doc) => {
                 if (err)
@@ -227,7 +228,7 @@ app.route('/api/user/reg')
 
 
 app.route('/api/user/reg:id')
-    .put(autenticar,(req, res) => {
+    .put(autenticar, (req, res) => {
         Desaparecidx.findOneAndUpdate({
             _id: req.params.id
         }).then(des => {
@@ -238,25 +239,28 @@ app.route('/api/user/reg:id')
 // listen (start app with node server.js) ======================================
 app.listen(port, () => console.log(`Example app listening on port ${port}! `));
 
-function auth(req, res, next) {
-
-    next();
+function autenticarOrg(req, res, next) {
+    if(req.tipo == 1)
+        next();
+    else
+        res.status(401).send({"err": "no eres organizacion"});
 }
 
 function autenticar(req, res, next) {
     let token = req.get('x-auth');
-    if(!token){
-        res.status(401).send({error: "no hay token"});
+    if (!token) {
+        res.status(401).send({ error: "no hay token" });
         return;
     }
-    User.verificarToken(token).then((user)=>{
+    User.verificarToken(token).then((user) => {
         console.log("Token verificado ...");
         req.userid = user._id;
+        req.tipo = user.tipo;
         next();
-    }).catch((err)=>{
+    }).catch((err) => {
         res.status(401).send(err);
     });
-    
+    bcrypt.compare()
     /*let token = req.get('x-auth');
     if (!token) {
         res.status(401).send({ error: "no hay token" });

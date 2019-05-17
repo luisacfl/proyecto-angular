@@ -42,36 +42,29 @@ export class DesaparecidoDetalleComponent implements OnInit {
 
     if (this.user == undefined){
       this.modo = -1;
-    }
-    else {
+    } else {
       this.modo = this.user.tipo;
     }
-   
-
     this.subscript = this.desapService.cambiaDato
       .subscribe(
         (des: Desaparecidx[]) => {
           this.desap = des;
         }
       );
-    
     this.route.params.subscribe(
       (params) => {
         this.id = params.id;
       }
     );
-
     this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
-
-    
     //console.log(this.desaparecidx);
-    
-
     console.log(this.modo);
 
   }
 
   seguir() {
+    console.log("user id"+this.user.id);
+    console.log("desap id"+this.id);
     this.userService.addSubs(this.user.id, this.id);
   }
 
