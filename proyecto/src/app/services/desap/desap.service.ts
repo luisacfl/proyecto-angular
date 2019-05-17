@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Desaparecidx } from '../../Desaparecidx';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject, of, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { CurrentuserService } from '../currentuser/currentuser.service';
+import { Usuario } from 'src/app/Usuario';
 // import { GeocoderService } from '../geocoder.service';
 
 @Injectable({
   providedIn: 'root'
-})
+})  
 export class DesapService {
   desapUrl = 'http://localhost:3000/api/desap';
   desaparecidos: Desaparecidx[];
   direccion = '';
   latLong = [];
-  private lastId = 0;
+  private lastId = 6;
   cambiaDato = new Subject<Desaparecidx[]>();
+  user:Usuario;
+  private subscript: Subscription;
 
-  constructor(private http: HttpClient
+
+  constructor(private http: HttpClient,
+            private currentuserService: CurrentuserService
               /*private geocoder: GeocoderService*/) {
   }
 
@@ -45,6 +51,21 @@ export class DesapService {
   }
   add(desap: Desaparecidx) {
     desap.id = this.lastId++;
+
+    this.user=this.currentuserService.user;
+
+    this.subscript = this.currentuserService.cambiaDato
+    .subscribe(
+      (user: Usuario) => {
+        this.user = user;
+      }
+    );
+
+   // desap.creadoOrg = this.currentuserService.user.org;
+    desap.creadoUsuario = this.currentuserService.user.nombre;
+  
+    
+    console.log(desap);
     return this.http.post<Desaparecidx>(this.desapUrl, desap);
   }
 

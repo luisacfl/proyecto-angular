@@ -25,6 +25,39 @@ app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
 
 // routes ======================================================================
+    
+    //======DESAPARECIDOS==============
+
+    app.route('/api/desap')
+        .get((req, res) => {
+            Desaparecidx.find({}, {
+            }, (err, docs) => {
+                if (err) {
+                    res.status(404).send();
+                    return;
+                }
+                res.json(docs);
+            })
+        })
+        .post((req, res) => {
+            if (req.body.prim_nombre){
+                let newDesap = new Desaparecidx(req.body);
+                newDesap.save((err, doc) => {
+                    if (err)
+                        console.log(err);
+                    if (doc) {
+                        res.status(201).send({id: doc.id});
+                    } else {
+                        res.status(400).send({ error: "no se guardó" });
+                    }
+                    return;
+                });
+            }else {
+                res.status(400).send({
+                    error: "Faltan atributos"
+                });
+            }
+        });
 
 //======DESAPARECIDOS==============
 
@@ -92,6 +125,7 @@ app.route('/api/desap/search')
                 res.json(des);
             });
     });
+    
 //======LOGIN & LOGOUT==============
 
 app.route('/api/user/login')

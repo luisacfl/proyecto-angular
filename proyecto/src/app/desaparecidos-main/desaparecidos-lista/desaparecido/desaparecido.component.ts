@@ -26,12 +26,22 @@ export class DesaparecidoComponent implements OnInit {
               private route:ActivatedRoute) { }
 
   ngOnInit() {
+    
+    this.user = this.currentUserService.user;
+
     this.subscript = this.currentUserService.cambiaDato
       .subscribe(
         (user: Usuario) => {
           this.user = user;
         }
     );
+    if (this.user == undefined) {
+      this.modo = -1;
+    }
+    else {
+      this.modo = this.user.tipo;
+    }
+    
   }
 
   mostrarDetalle(){

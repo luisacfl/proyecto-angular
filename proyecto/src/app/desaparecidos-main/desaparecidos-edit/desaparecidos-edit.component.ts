@@ -36,7 +36,7 @@ export class DesaparecidosEditComponent implements OnInit {
           } else {
             this.modoAdd = true;
             this.error = false;
-            //this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update','',0,0,0);
+            this.desaparecidx = new Desaparecidx(this.desapService.getNextId(),'','','','','','','','','','','','','','',0,'','','','','update',0,0,"",'','');
           }
         }
       );
@@ -47,11 +47,13 @@ export class DesaparecidosEditComponent implements OnInit {
           this.desap = des;
         }
       );
+
     if (!this.modoAdd) {
       this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
     }
     console.log(this.desap);
     console.log(this.modoAdd);
+
   }
 
   submit(formulario: NgForm) {
@@ -74,7 +76,6 @@ export class DesaparecidosEditComponent implements OnInit {
           console.log(err);
         });
     }
-
   }
 
   regresar() {

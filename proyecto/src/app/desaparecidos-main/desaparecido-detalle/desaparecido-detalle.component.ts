@@ -30,34 +30,45 @@ export class DesaparecidoDetalleComponent implements OnInit {
     private userService: UsersService) { }
 
   ngOnInit() {
-    this.subscript = this.currentUserService.cambiaDato
-      .subscribe(
-        (user: Usuario) => {
-          this.user = user;
-        }
-      );
-    console.log('QUEONDA'+this.modo);
-    this.subscript = this.desapService.cambiaDato
-      .subscribe(
-        (des: Desaparecidx[]) => {
-          this.desap = des;
-        }
-      );
 
-    this.route.params.subscribe(
-      (params) => {
-        this.id = params.id;
+    this.user = this.currentUserService.user;
+
+    this.subscript = this.currentUserService.cambiaDato
+    .subscribe(
+      (user: Usuario) => {
+        this.user = user;
       }
     );
-    this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
-    //console.log(this.desaparecidx);
-    //this.user = this.currentUserService.user;
+
     if (this.user == undefined){
       this.modo = -1;
     }
     else {
       this.modo = this.user.tipo;
     }
+   
+
+    this.subscript = this.desapService.cambiaDato
+      .subscribe(
+        (des: Desaparecidx[]) => {
+          this.desap = des;
+        }
+      );
+    
+    this.route.params.subscribe(
+      (params) => {
+        this.id = params.id;
+      }
+    );
+
+    this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
+
+    
+    //console.log(this.desaparecidx);
+    
+
+    console.log(this.modo);
+
   }
 
   seguir() {

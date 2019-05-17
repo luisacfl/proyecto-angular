@@ -16,11 +16,10 @@ export class CurrentuserService {
 
   login(usuario: Usuario){
     this.user = usuario;
-    console.log(this.user);
     this.modo=this.user.tipo;
     this.notificarCambios();
-    return this.http.post<Usuario>(this.userURL+'/login',usuario)
-    .subscribe(data => console.log(data));
+    console.log(this.user);
+    //return this.http.post<Usuario>(this.userURL+'/login',usuario).subscribe(data => console.log(data));
   }
 
   logout(usuario:Usuario){
