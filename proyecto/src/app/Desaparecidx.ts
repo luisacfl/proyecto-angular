@@ -23,6 +23,8 @@ export class Desaparecidx {
         public status: string, //asumir que update es desaparecido y delete es encontrado
         public lat: number, //Lat y long son solo para el mapa, no poner en detalle
         public long: number,
-        public img: string
+        public img: string,
+        public creadoOrg: string,
+        public creadoUsuario: string
     ) { }
 }

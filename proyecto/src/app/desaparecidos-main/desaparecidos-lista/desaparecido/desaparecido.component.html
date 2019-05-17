@@ -2,7 +2,7 @@
   
     <div class="media-left align-self-center botones-edicion">
         <div class="row" (click)="mostrarDetalle()">
-          <a name="" id="" class="btn btn-success btn-lg" role="button"><i class="fas fa-search"></i></a>
+          <a name="" id="" class="btn btn-success btn-xs" role="button"><i class="fas fa-search"></i></a>
         </div>
       </div>
 
@@ -15,9 +15,9 @@
     <p class="enc" *ngIf= "this.desaparecidx.status == 'delete' ">Encontrado</p>
   </div>
 
-  <div *ngIf='modo == 0'class="media-right align-self-center botones-edicion">
-    <div class="row" (click)="editar()">
-        <div class="btn btn-warning btn-lg edit"><i class="fas fa-pencil-alt  edit  "></i></div>
+  <div class="media-right align-self-center botones-edicion">
+    <div *ngIf='this.modo == 0' class="row" (click)="editar()">
+        <div class="btn btn-warning btn-xs edit"><i class="fas fa-pencil-alt  edit  "></i></div>
     </div>
   </div>
   

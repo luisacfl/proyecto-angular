@@ -11,44 +11,25 @@
         </div>
         <div class="col-md-3" *ngIf="modoAdd">
           <label for="">Nombre*</label>
-          <div *ngIf="!modoAdd">
-            <input [(ngModel)]="desaparecidx.prim_nombre" type="text" class="form-control prim_nombre"
-              name="prim_nombre" required>
-          </div>
-          <div *ngIf="modoAdd">
-            <input type="text" class="form-control prim_nombre" name="prim_nombre" required>
-          </div>
+          <input [(ngModel)]="desaparecidx.prim_nombre" type="text" class="form-control prim_nombre" name="prim_nombre"
+            required>
         </div>
         <div class="col-md-3" *ngIf="modoAdd">
           <label for="">Apellido Paterno*</label>
-          <div *ngIf="!modoAdd">
             <input [(ngModel)]="desaparecidx.apellido_pat" type="text" class="form-control apellido_pat"
               name="apellido_pat" required>
-          </div>
-          <div *ngIf="modoAdd">
-            <input type="text" class="form-control apellido_pat" name="apellido_pat" required>
-          </div>
         </div>
+
         <div class="col-md-3">
           <label for="">Apellido Materno</label>
-          <div *ngIf="!modoAdd">
-            <input [(ngModel)]="desaparecidx.apellido_mat" type="text" class="form-control apellido_mat"
+          <input [(ngModel)]="desaparecidx.apellido_mat" type="text" class="form-control apellido_mat"
               name="apellido_mat" required>
-          </div>
-          <div *ngIf="modoAdd">
-            <input type="text" class="form-control apellido_mat" name="apellido_mat" required>
-          </div>
         </div>
+
         <div class="col-md-1">
           <label for="">Edad</label>
-          <div *ngIf="!modoAdd">
             <input [(ngModel)]="desaparecidx.fuerocomun_edad" type="number" class="form-control fuerocomun_edad"
               name="fuerocomun_edad">
-          </div>
-          <div *ngIf="modoAdd">
-            <input type="number" class="form-control fuerocomun_edad" name="fuerocomun_edad">
-          </div>
-
         </div>
       </div>
 
@@ -108,6 +89,7 @@
           <input [(ngModel)]="desaparecidx.fuerocomun_descripcion" name="desc" type="text"
             class="form-control fuerocomun_descripcion" name="fuerocomun_descripcion">
         </div>
+        
         <div class="col-md-3">
           <label for="">Complexión</label>
           <input [(ngModel)]="desaparecidx.fuerocomun_complexion" name="comp" type="text"

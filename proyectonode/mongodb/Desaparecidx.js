@@ -80,7 +80,7 @@ let desapSchema = new mongoose.Schema({
     },
     fuerocomun_sexo: {
       type: String,
-      enum: ['HOMBRE', 'MUJER'],
+      enum: ['M', 'F'],
       required: false
     },
     status: {
@@ -102,7 +102,7 @@ let desapSchema = new mongoose.Schema({
     },
     creadoOrg: {
         type: String,
-        required: true
+        required: false
     },
     creadoUsuario:{
         type: String, 

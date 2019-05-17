@@ -52,7 +52,6 @@ export class DesaparecidosListaComponent implements OnInit {
     }
     this.modo = this.currentUserService.modo;
     
-    console.log(this.modo);
     this.subscript = this.desapService.cambiaDato.subscribe((arregloDesaparecidxs: Desaparecidx[]) => {
       this.desaparecidxs = arregloDesaparecidxs;
     });

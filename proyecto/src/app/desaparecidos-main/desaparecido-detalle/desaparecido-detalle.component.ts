@@ -28,12 +28,23 @@ export class DesaparecidoDetalleComponent implements OnInit {
     private currentUserService: CurrentuserService) { }
 
   ngOnInit() {
+
+    this.user = this.currentUserService.user;
+
     this.subscript = this.currentUserService.cambiaDato
-      .subscribe(
-        (user: Usuario) => {
-          this.user = user;
-        }
-      );
+    .subscribe(
+      (user: Usuario) => {
+        this.user = user;
+      }
+    );
+
+    if (this.user == undefined){
+      this.modo = -1;
+    }
+    else {
+      this.modo = this.user.tipo;
+    }
+   
 
     this.subscript = this.desapService.cambiaDato
       .subscribe(
@@ -41,21 +52,21 @@ export class DesaparecidoDetalleComponent implements OnInit {
           this.desap = des;
         }
       );
-
+    
     this.route.params.subscribe(
       (params) => {
         this.id = params.id;
       }
     );
+
     this.desaparecidx = this.desapService.desaparecidos.find(u => u.id == this.id);
+
+    
     //console.log(this.desaparecidx);
-    //this.user = this.currentUserService.user;
-    if (this.user == undefined){
-      this.modo = -1;
-    }
-    else {
-      this.modo = this.user.tipo;
-    }
+    
+
+    console.log(this.modo);
+
   }
 
   seguir() {
