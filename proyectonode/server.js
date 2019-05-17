@@ -10,7 +10,7 @@ let { Desaparecidx } = require('./mongodb/Desaparecidx');
 let { User } = require('./mongodb/User');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000 ||process.env.PORT;
 
 // parse requests of content-type - application/json
 let jsonParser = bodyParser.json();
@@ -103,14 +103,14 @@ app.route('/api/desap/:id')
     })
     .put(autenticar, (req, res) => {
         Desaparecidx.findOneAndUpdate({
-            _id: req.params.id
+            id: req.params.id
         }).then(des => {
             res.json(des)
         });
     })
     .delete(autenticar, (req, res) => {
         Desaparecidx.findOneAndRemove({
-            _id: req.params.id
+            id: req.params.id
         }).then(des => {
             res.json(des);
         });

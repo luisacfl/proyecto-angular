@@ -15,7 +15,7 @@ export class DesapService {
   desaparecidos: Desaparecidx[];
   direccion = '';
   latLong = [];
-  private lastId = 6;
+  lastId = 10;
   cambiaDato = new Subject<Desaparecidx[]>();
   user:Usuario;
   private subscript: Subscription;
@@ -50,7 +50,6 @@ export class DesapService {
     return this.http.get<Desaparecidx[]>(this.desapUrl);
   }
   add(desap: Desaparecidx) {
-    desap.id = this.lastId++;
 
     this.user=this.currentuserService.user;
 
@@ -70,21 +69,22 @@ export class DesapService {
   }
 
   add2(desap: Desaparecidx) {
-    desap.id = this.lastId++;
     return this.http.post<Desaparecidx>(this.desapUrl, desap)
       .subscribe((res) => {
 
       });
   }
 
-  edit(id: number): Observable<Desaparecidx> {
-    return this.http.put<Desaparecidx>(this.desapUrl + '/', id);
+  edit(desap: Desaparecidx){
+    console.log(desap);
+    return this.http.put<Desaparecidx>(this.desapUrl + '/', desap.id);
   }
+
   delete(id: number) {
     return this.http.delete(this.desapUrl + id);
   }
   getNextId() {
-    return this.lastId;
+    return ++this.desaparecidos.length;
   }
   getDesapFiltro(nameSrch: string, edadSrch: number, edoSrch: string, sxSrch: string, statusSrch: string): Observable<Desaparecidx> {
     var urlBuild = '?';
