@@ -11,7 +11,7 @@ let { Desaparecidx } = require('./mongodb/Desaparecidx');
 let { User } = require('./mongodb/User');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000 ||process.env.PORT;
 
 // parse requests of content-type - application/json
 let jsonParser = bodyParser.json();
@@ -72,7 +72,7 @@ app.route('/api/desap')
             res.json(docs);
         })
     })
-    .post(autenticar,(req, res) => {
+    .post((req, res) => {
         if (req.body.prim_nombre &&
             req.body.apellido_pat &&
             (req.body.status == "update" || req.body.status == "delete")) {
@@ -102,16 +102,16 @@ app.route('/api/desap/:id')
             res.json(des)
         });
     })
-    .put(autenticar,(req, res) => {
+    .put((req, res) => {
         Desaparecidx.findOneAndUpdate({
-            _id: req.params.id
+            id: req.params.id
         }).then(des => {
             res.json(des)
         });
     })
-    .delete(autenticar,(req, res) => {
+    .delete((req, res) => {
         Desaparecidx.findOneAndRemove({
-            _id: req.params.id
+            id: req.params.id
         }).then(des => {
             res.json(des);
         });
@@ -196,13 +196,13 @@ app.route('/api/user/login/:id')
 
 //======REGISTRO==============
 app.route('/api/user/reg')
-    .get(autenticar,(req, res) => {
+    .get((req, res) => {
         //console.log("USER get ENTER");
         User.find({}).then(des => {
             res.json(des)
         });
     })
-    .post(autenticar,(req, res) => {
+    .post((req, res) => {
         console.log("USER POST ENTER");
         if (req.body.nombre && req.body.email &&
             req.body.contrasena) {
@@ -227,7 +227,7 @@ app.route('/api/user/reg')
 
 
 app.route('/api/user/reg:id')
-    .put(autenticar,(req, res) => {
+    .put((req, res) => {
         Desaparecidx.findOneAndUpdate({
             _id: req.params.id
         }).then(des => {

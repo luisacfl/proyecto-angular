@@ -68,7 +68,7 @@ export class DesaparecidosEditComponent implements OnInit {
           console.log(err);
         });
     } else {
-      this.desapService.edit(this.desaparecidx.id)
+      this.desapService.edit(this.desaparecidx)
         .subscribe(res => {
           console.log(res);
           this.router.navigate(['/listado']);
