@@ -3,6 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const saltRounds = 10;
+
 let { Desaparecidx } = require('./mongodb/Desaparecidx');
 let { User } = require('./mongodb/User');
 
@@ -35,7 +39,7 @@ app.route('/api/desap')
             res.json(docs);
         })
     })
-    .post((req, res) => {
+    .post(autenticar,(req, res) => {
         if (req.body.prim_nombre &&
             req.body.apellido_pat &&
             (req.body.status == "update" || req.body.status == "delete")) {
@@ -65,14 +69,14 @@ app.route('/api/desap/:id')
             res.json(des)
         });
     })
-    .put((req, res) => {
+    .put(autenticar,(req, res) => {
         Desaparecidx.findOneAndUpdate({
             _id: req.params.id
         }).then(des => {
             res.json(des)
         });
     })
-    .delete((req, res) => {
+    .delete(autenticar,(req, res) => {
         Desaparecidx.findOneAndRemove({
             _id: req.params.id
         }).then(des => {
@@ -158,16 +162,17 @@ app.route('/api/user/login/:id')
 
 //======REGISTRO==============
 app.route('/api/user/reg')
-    .get((req, res) => {
-        console.log("USER get ENTER");
+    .get(autenticar,(req, res) => {
+        //console.log("USER get ENTER");
         User.find({}).then(des => {
             res.json(des)
         });
     })
-    .post((req, res) => {
+    .post(autenticar,(req, res) => {
         console.log("USER POST ENTER");
         if (req.body.nombre && req.body.email &&
             req.body.contrasena) {
+            req.body.contrasena = bcrypt.hashSync(req.body.contrasena, 10);
             let newUser = new User(req.body);
             newUser.save((err, doc) => {
                 if (err)
@@ -188,7 +193,7 @@ app.route('/api/user/reg')
 
 
 app.route('/api/user/reg:id')
-    .put((req, res) => {
+    .put(autenticar,(req, res) => {
         Desaparecidx.findOneAndUpdate({
             _id: req.params.id
         }).then(des => {
@@ -206,6 +211,19 @@ function auth(req, res, next) {
 
 function autenticar(req, res, next) {
     let token = req.get('x-auth');
+    if(!token){
+        res.status(401).send({error: "no hay token"});
+        return;
+    }
+    User.verificarToken(token).then((user)=>{
+        console.log("Token verificado ...");
+        req.userid = user._id;
+        next();
+    }).catch((err)=>{
+        res.status(401).send(err);
+    });
+    
+    /*let token = req.get('x-auth');
     if (!token) {
         res.status(401).send({ error: "no hay token" });
         return;
@@ -217,5 +235,5 @@ function autenticar(req, res, next) {
         next();
     }).catch((err) => {
         res.status(401).send(err);
-    });
+    });*/
 }

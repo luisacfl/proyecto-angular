@@ -1,5 +1,7 @@
-let { mongoose } = require('./mongodb-connect')
-const jwt = require('jsonWebtoken');
+let { mongoose } = require('./mongodb-connect');
+//const bcrypt = require('bcrypt');
+const jwt = require ('jsonwebtoken');
+
 let userSchema = mongoose.Schema({
     id: {
         type: Number, 
